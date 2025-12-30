@@ -1,0 +1,5 @@
+# Tutorial:
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Interra PIs and Co-leads will automatically be assigned to review each PR
+* @Interra-Project/pis @Interra-Project/co-leads

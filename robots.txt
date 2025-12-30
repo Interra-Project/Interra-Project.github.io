@@ -1,0 +1,7 @@
+# robots.txt for Interra Project Website
+# https://interra-project.org
+
+User-agent: *
+Allow: /
+
+Sitemap: https://interra-project.org/sitemap.xml
