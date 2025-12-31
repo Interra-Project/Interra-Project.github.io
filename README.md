@@ -32,3 +32,10 @@ bundle install
 bundle exec jekyll serve
 ````
 => Now browse to `http://localhost:4000`
+
+### Tips & tricks
+
+Faster reload times for local serve with
+````
+bundle exec jekyll serve --incremental --livereload
+````

@@ -34,12 +34,12 @@ menu_settings:
     - title: 'Home'
       url: '/'
       # submenu_items:
-    - title: 'Docs'
-      url: 'https://fwl-proteus.readthedocs.io/en/latest/'
-      icon: ni-book-bookmark text-primary
+    # - title: 'Docs'
+    #   url: 'https://fwl-proteus.readthedocs.io/en/latest/'
+    #   icon: ni-book-bookmark text-primary
 
-    # - title: 'Demo'
-    #   url: '/demo'
+    - title: 'Ensembles'
+      url: '/demo'
 
     # - title: Modules
     #   url: /modules
@@ -49,41 +49,40 @@ menu_settings:
     #   url: '/policy'
     #   icon: ni-settings-gear-65 text-default
 
-    - title: 'Publications'
-      url: 'https://scixplorer.org/public-libraries/EVAJ1UgWTCy2Z7TRoSmjtQ'
-      icon: ni-book-bookmark text-primary
+    # - title: 'Publications'
+    #   url: 'https://scixplorer.org/public-libraries/EVAJ1UgWTCy2Z7TRoSmjtQ'
+    #   icon: ni-book-bookmark text-primary
 
-    - title: 'People & Contact'
+    - title: 'Team'
       url: '/people'
 
 footer_settings:
-  footer_tagline: PROTEUS framework for planetary evolution
+  footer_tagline: Interra Project
+# contact_settings:
+#   form_action: 'https://formspree.io/hello@jekyllthemes.io'
+#   confirmation_url: '/thanks'
+#   email_subject: 'Contact form submission'
+#   send_button_text: 'Send Message'
 
-contact_settings:
-  form_action: 'https://formspree.io/hello@jekyllthemes.io'
-  confirmation_url: '/thanks'
-  email_subject: 'Contact form submission'
-  send_button_text: 'Send Message'
+# social_settings:
+#   facebook_url: ''
+#   twitter_url: ''
+#   instagram_url: ''
+#   youtube_url: ''
+#   vimeo_url: ''
+#   pinterest_url: ''
+#   tumblr_url: ''
+#   dribbble_url: ''
+#   behance_url: ''
+#   github_url: 'https://github.com/FormingWorlds/PROTEUS'
+#   reddit_url: ''
+#   linkedin_url: ''
 
-social_settings:
-  facebook_url: ''
-  twitter_url: ''
-  instagram_url: ''
-  youtube_url: ''
-  vimeo_url: ''
-  pinterest_url: ''
-  tumblr_url: ''
-  dribbble_url: ''
-  behance_url: ''
-  github_url: 'https://github.com/FormingWorlds/PROTEUS'
-  reddit_url: ''
-  linkedin_url: ''
-
-authors:
-  nicholls:
-    name: Harrison Nicholls
-  lichtenberg:
-    name: Tim Lichtenberg
+# authors:
+#   nicholls:
+#     name: Harrison Nicholls
+#   lichtenberg:
+#     name: Tim Lichtenberg
 
 advanced_settings:
   analytics_code: 
