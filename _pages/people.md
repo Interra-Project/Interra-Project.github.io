@@ -1,9 +1,9 @@
 ---
-title: Meet the team
-subtitle: For enquiries please write an email to <a href="mailto:proteus_dev@formingworlds.space">proteus_dev@formingworlds.space</a>
+title: Interra Team
+subtitle: For enquiries please either start a <a href="https://github.com/orgs/Interra-Project/discussions" target="_blank">Discussion on GitHub</a> or write an email to <a href="mailto:contact@interra-project.org">contact@interra-project.org</a>.
 
-tagline: PROTEUS framework for planetary evolution.
-description: PROTEUS framework for planetary evolution. Simulating coupled interior-atmosphere interactions on exoplanets using advanced numerical methods, to understand observations and the origin of life.
+tagline: Interra Project
+description: Interra Project
 
 featured_image: /assets/img/illustrations/two_face_planet.jpg
 ---
