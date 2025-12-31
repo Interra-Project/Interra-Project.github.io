@@ -8,4 +8,4 @@ description: PROTEUS framework for planetary evolution. Simulating coupled inter
 featured_image: /assets/img/illustrations/two_face_planet.jpg
 ---
 
-{% include components/teams/team-carousel-2.html %}
+{% include components/teams/team-carousel-3.html %}
