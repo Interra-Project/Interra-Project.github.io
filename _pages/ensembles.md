@@ -8,7 +8,9 @@ description: Interra Project
 featured_image: /assets/img/illustrations/two_face_planet.jpg
 ---
 
-Information about data access, links to papers, and documentation for the Interra model ensembles will be provided here.
+<div class="text-center">
+  <p>Information about data access, links to papers, and documentation for the Interra model ensembles will be provided here.</p>
+</div>
 
 <!-- <i class="ni ni-air-baloon"></i>
 
