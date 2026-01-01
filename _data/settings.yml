@@ -52,7 +52,7 @@ menu_settings:
     #   icon: ni-book-bookmark text-primary
 
     - title: 'Team'
-      url: '/people'
+      url: '/team'
 
     - title: 'Contact'
       url: '/contact'

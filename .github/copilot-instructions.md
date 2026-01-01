@@ -22,7 +22,7 @@ Jekyll config ([`_config.yml`](_config.yml)) handles:
 2. [`_layouts/post.html`](_layouts/post.html) - Blog posts with full-width header image and optional "You might also like..." section
 
 ### Content Structure
-- **Pages** (`_pages/`): Frontmatter + component includes. Example: [`people.md`](_pages/people.md) includes `team-carousel-2.html`
+- **Pages** (`_pages/`): Frontmatter + component includes. Example: [`team.md`](_pages/team.md) includes `team-carousel-2.html`
 - **Posts** (`_posts/`): Dated markdown files (YYYY-MM-DD-slug.md), displayed as "Publications" with academic paper styling
 - **Components** (`_includes/components/`): Reusable HTML blocks organized by category (teams, headers, features, pricing, testimonials)
 
