@@ -50,10 +50,10 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/EmelineDecocq.avif' | relative_url }}">
           </a>
           <div class="card-body">
-            <h4 class="display-4">Tim Lichtenberg</h4>
+            <h4 class="display-4">Emeline Decocq</h4>
             <p class="lead mt-0 mb-0">University of Groningen</p>
           </div>
         </div>
@@ -62,10 +62,10 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/ImreKisvárdai.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
-            <h4 class="display-4">Tim Lichtenberg</h4>
+            <h4 class="display-4">Imre Kisvárdai</h4>
             <p class="lead mt-0 mb-0">University of Groningen</p>
           </div>
         </div>
@@ -74,10 +74,10 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/MarijnVanDijk.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
-            <h4 class="display-4">Tim Lichtenberg</h4>
+            <h4 class="display-4">Marijn van Dijk</h4>
             <p class="lead mt-0 mb-0">University of Groningen</p>
           </div>
         </div>
@@ -86,34 +86,10 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/KarenStuitje.avif' | relative_url }}">
           </a>
           <div class="card-body">
-            <h4 class="display-4">Tim Lichtenberg</h4>
-            <p class="lead mt-0 mb-0">University of Groningen</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
-          </a>
-          <div class="card-body" style="margin-top: 20px">
-            <h4 class="display-4">Tim Lichtenberg</h4>
-            <p class="lead mt-0 mb-0">University of Groningen</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
-          </a>
-          <div class="card-body" style="margin-top: 20px">
-            <h4 class="display-4">Tim Lichtenberg</h4>
+            <h4 class="display-4">Karen Stuitje</h4>
             <p class="lead mt-0 mb-0">University of Groningen</p>
           </div>
         </div>
@@ -138,11 +114,11 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/HarrisonNicholls.avif' | relative_url }}">
           </a>
           <div class="card-body">
-            <h4 class="display-4">Tim Lichtenberg</h4>
-            <p class="lead mt-0 mb-0">University of Groningen</p>
+            <h4 class="display-4">Harrison Nicholls</h4>
+            <p class="lead mt-0 mb-0">University of Cambridge</p>
           </div>
         </div>
       </div>
@@ -150,10 +126,10 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/MaraAttia.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
-            <h4 class="display-4">Tim Lichtenberg</h4>
+            <h4 class="display-4">Mara Attia</h4>
             <p class="lead mt-0 mb-0">University of Groningen</p>
           </div>
         </div>

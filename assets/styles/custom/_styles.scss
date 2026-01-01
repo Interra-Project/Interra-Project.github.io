@@ -5,10 +5,31 @@
   .card.card-profile[data-background="full"] {
     max-width: 280px; // Limit card width to keep them compact
     margin: 0 auto 30px; // Center cards horizontally with spacing below
-    height: 300px; // Fixed height to ensure all cards are uniform
+    height: 350px; // Fixed height to ensure all cards are uniform
     display: flex; // Flexbox for proper content alignment
     flex-direction: column;
     overflow: hidden; // Prevent content from overflowing
+
+    .card-header {
+      padding: 0;
+      border: none;
+      background: none;
+      flex-shrink: 0; // Prevent image container from shrinking
+    }
+
+    .card-image {
+      height: 220px; // Fixed image height - fills to max
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+
+      img {
+        width: auto;
+        height: 100%;
+        object-fit: cover; // Crop image to fit
+        object-position: center;
+      }
+    }
 
     .card-body {
       background-color: rgba(255, 255, 255, 0.9) !important; // Semi-opaque white overlay for text readability over images
