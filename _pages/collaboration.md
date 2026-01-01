@@ -1,5 +1,5 @@
 ---
-title: Interra Project Team
+title: Interra Collaboration
 # subtitle: For enquiries please either start a <a href="https://github.com/orgs/Interra-Project/discussions" target="_blank">Discussion on GitHub</a> or write an email to <a href="mailto:contact@interra-project.org">contact@interra-project.org</a>.
 
 tagline: Interra Project

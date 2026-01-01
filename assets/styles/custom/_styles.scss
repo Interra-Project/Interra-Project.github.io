@@ -17,18 +17,24 @@
       flex-shrink: 0; // Prevent image container from shrinking
     }
 
-    .card-image {
-      height: 220px; // Fixed image height - fills to max
+    // Image container (covers both .card-image wrapper and direct <a><img> structure in team.md)
+    .card-image,
+    > a {
+      height: 400px; // Fixed image height - fills to max
       overflow: hidden;
       margin: 0;
       padding: 0;
+      display: block;
+    }
 
-      img {
-        width: auto;
-        height: 100%;
-        object-fit: cover; // Crop image to fit
-        object-position: center;
-      }
+    // Ensure images fill height and crop horizontally
+    .card-image img,
+    > a > img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Crop image to fit
+      object-position: center;
     }
 
     .card-body {

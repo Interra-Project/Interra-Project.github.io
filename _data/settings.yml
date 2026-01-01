@@ -51,8 +51,8 @@ menu_settings:
     #   url: 'https://scixplorer.org/public-libraries/EVAJ1UgWTCy2Z7TRoSmjtQ'
     #   icon: ni-book-bookmark text-primary
 
-    - title: 'Team'
-      url: '/team'
+    - title: 'Collaboration'
+      url: '/collaboration'
 
     - title: 'Contact'
       url: '/contact'
