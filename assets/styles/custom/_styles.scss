@@ -5,10 +5,15 @@
   .card.card-profile[data-background="full"] {
     max-width: 280px; // Limit card width to keep them compact
     margin: 0 auto 30px; // Center cards horizontally with spacing below
+    height: 300px; // Fixed height to ensure all cards are uniform
+    display: flex; // Flexbox for proper content alignment
+    flex-direction: column;
+    overflow: hidden; // Prevent content from overflowing
 
     .card-body {
       background-color: rgba(255, 255, 255, 0.9) !important; // Semi-opaque white overlay for text readability over images
       padding: 0.75rem !important; // Minimal padding to keep text box tight around content
+      margin-top: auto; // Push body to bottom, allowing fixed image height
     }
 
     .card-body h4,

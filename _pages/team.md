@@ -10,17 +10,15 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
 
 <div class="team-3">
   <div class="container">
-
     <div class="row">
-      
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/HarrisonNicholls.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/MarianaSastre.avif' | relative_url }}">
           </a>
           <div class="card-body">
-            <h4 class="display-4">Harrison Nicholls</h4>
-            <p class="lead mt-0 mb-0">University of Cambridge</p>
+            <h4 class="display-4">Mariana Sastre</h4>
+            <p class="lead mt-0 mb-0">University of Groningen</p>
           </div>
         </div>
       </div>
@@ -28,10 +26,10 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/EmmaPostolec.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
-            <h4 class="display-4">Tim Lichtenberg</h4>
+            <h4 class="display-4">Emma Postolec</h4>
             <p class="lead mt-0 mb-0">University of Groningen</p>
           </div>
         </div>
@@ -40,11 +38,11 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
-            <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
+            <img class="img img-raised rounded" src="{{ '/assets/img/faces/RobbCalder.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
-            <h4 class="display-4">Tim Lichtenberg</h4>
-            <p class="lead mt-0 mb-0">University of Groningen</p>
+            <h4 class="display-4">Robb Calder</h4>
+            <p class="lead mt-0 mb-0">University of Cambridge</p>
           </div>
         </div>
       </div>
