@@ -1,12 +1,12 @@
 basic_settings:
-  site_title: PROTEUS Framework
+  site_title: Interra Project
   favicon_image: /assets/img/brand/PROTEUS_black_on_white_logo_only.png
 
 header_settings:
   logo_image: /assets/img/brand/PROTEUS_white_on_black.png
   mobile_logo_image: /assets/img/brand/PROTEUS_white_on_black.png
   # Choose a color for your header [blue, dark, light].
-  theme: dark
+  theme: blue
   # If the page has a featured image, it turns transparent if allow_transparent is set to "yes".
   allow_transparent: "yes"
 
@@ -38,8 +38,8 @@ menu_settings:
     #   url: 'https://fwl-proteus.readthedocs.io/en/latest/'
     #   icon: ni-book-bookmark text-primary
 
-    - title: 'Ensembles'
-      url: '/demo'
+    - title: 'Model Ensembles'
+      url: '/ensembles'
 
     # - title: Modules
     #   url: /modules
