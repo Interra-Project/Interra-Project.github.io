@@ -3,10 +3,10 @@ basic_settings:
   favicon_image: /assets/img/brand/PROTEUS_black_on_white_logo_only.png
 
 header_settings:
-  logo_image: /assets/img/brand/PROTEUS_white_on_black.png
-  mobile_logo_image: /assets/img/brand/PROTEUS_white_on_black.png
+  # logo_image: /assets/img/brand/PROTEUS_white_on_black.png
+  # mobile_logo_image: /assets/img/brand/PROTEUS_white_on_black.png
   # Choose a color for your header [blue, dark, light].
-  theme: blue
+  theme: dark
   # If the page has a featured image, it turns transparent if allow_transparent is set to "yes".
   allow_transparent: "yes"
 

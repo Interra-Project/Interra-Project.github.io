@@ -1,84 +1,20 @@
 ---
-title: Home
+title: Interra Project
 layout: default
 tagline: Interra Project
 description: Interra Project
 featured_image: /assets/img/illustrations/two_face_planet.jpg
 ---
 
-<!--Replace this page with your landing page content -->
-{% if site.data.settings.home_settings.theme == "landing" %}
-  {% include home.html %}
-  <!-- <div class="features-7 fullWidth contentWrapper">
-    <div class="container mb-2">
+<div class="page-header header-filter" style="width: 100vw; margin-left: calc(50% - 50vw);">
+  <div class="page-header-image" style="background-image: url({{ page.featured_image | relative_url }});"></div>
+  <div class="container">
     <div class="row">
-        <div class="col-md-8 text-center mx-auto">
-            <h3 class="display-2">Papers</h3>
-            <p class="lead pb-5">The latest from our papers</p>
-        </div>
-    </div>
-    
+      <div class="col-lg-10 mx-auto text-center pt-8">
+        <h2 class="display-2 text-white">{{ page.title }}</h2>
+      </div>
     </div>
   </div>
-  {% include blogsHome.html %} -->
-{% endif %}
-
-{% if site.data.settings.home_settings.theme == "blog" %}
-  <!-- Or turn your homepage into just a papers list -->
-  {% if site.data.settings.blog_settings.theme == "narrow" %}
-  <div class="page-header page-header-small bg-secondary fullWidth ">
-      <div class="container contentWrapper">
-        <div class="row">
-          <div class="col-lg-10 mx-auto text-center pt-4">
-            <h2 class="display-2">Papers</h2>
-            <h2 class="lead pl-5 pr-5 pb-3 text-center">The latest from our papers</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
-      <section class="blog main-raised">
-          {% include blogsHome.html %}  
-      </section>
-          
-  {% endif %}
-
-  {% if site.data.settings.blog_settings.theme == "basic" %}
-  <div class="page-header page-header-small bg-secondary fullWidth ">
-      <div class="container contentWrapper">
-        <div class="row">
-          <div class="col-lg-10 mx-auto text-center pt-4">
-            <h2 class="display-2">Papers</h2>
-            <h2 class="lead pl-5 pr-5 pb-3 text-center">The latest from our papers</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
-      <section class="blog mt-5">
-          {% include blogsHome.html %}  
-      </section>
-          
-  {% endif %}
-
-  {% if site.data.settings.blog_settings.theme == "grid" %}
-  <div class="page-header page-header-small bg-secondary fullWidth ">
-      <div class="container contentWrapper">
-        <div class="row">
-          <div class="col-lg-10 mx-auto text-center pt-4">
-            <h2 class="display-2">Papers</h2>
-            <h2 class="lead pl-5 pr-5 pb-3 text-center">The latest from our papers</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-
-      <section class="blog">
-          {% include blogsHome.html %}  
-      </section>
-          
-  {% endif %}
-
-{% endif %}
+</div>
 
 
