@@ -14,8 +14,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
     <div class="row" id="team-members-row">
       
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://planetmariana.github.io/', '_blank')">
+          <a href="https://planetmariana.github.io/" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/MarianaSastre.avif' | relative_url }}">
           </a>
           <div class="card-body">
@@ -26,8 +26,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
       
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://www.formingworlds.space/team/emma-postolec', '_blank')">
+          <a href="https://www.formingworlds.space/team/emma-postolec" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/EmmaPostolec.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
@@ -38,8 +38,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
 
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://rdc49.github.io/', '_blank')">
+          <a href="https://rdc49.github.io/" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/RobbCalder.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
@@ -50,8 +50,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
 
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://github.com/Emeline0110', '_blank')">
+          <a href="https://github.com/Emeline0110" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/EmelineDecocq.avif' | relative_url }}">
           </a>
           <div class="card-body">
@@ -62,8 +62,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
       
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://github.com/IKisvardai', '_blank')">
+          <a href="https://github.com/IKisvardai" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/ImreKisvárdai.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
@@ -74,8 +74,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
 
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://github.com/MarijnJ0', '_blank')">
+          <a href="https://github.com/MarijnJ0" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/MarijnVanDijk.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
@@ -86,8 +86,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
 
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://github.com/stuitje', '_blank')">
+          <a href="https://github.com/stuitje" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/KarenStuitje.avif' | relative_url }}">
           </a>
           <div class="card-body">
@@ -114,8 +114,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
     <div class="row" id="co-leads-row">
       
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://www.h-nicholls.space/', '_blank')">
+          <a href="https://www.h-nicholls.space/" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/HarrisonNicholls.avif' | relative_url }}">
           </a>
           <div class="card-body">
@@ -126,8 +126,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
       
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://maraattia.github.io/', '_blank')">
+          <a href="https://maraattia.github.io/" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/MaraAttia.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
@@ -154,8 +154,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
     <div class="row" id="pis-row">
       
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://www.formingworlds.space', '_blank')">
+          <a href="https://www.formingworlds.space" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/TimLichtenberg.avif' | relative_url }}">
           </a>
           <div class="card-body">
@@ -166,8 +166,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
       
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://www.saraseager.com/', '_blank')">
+          <a href="https://www.saraseager.com/" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/SaraSeager.avif' | relative_url }}">
           </a>
           <div class="card-body" style="margin-top: 20px">
@@ -178,8 +178,8 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
       </div>
 
       <div class="col-lg-4 col-md-5 mx-auto">
-        <div class="card card-profile" data-background="full">
-          <a href="javascript:;">
+        <div class="card card-profile" data-background="full" style="cursor: pointer;" onclick="window.open('https://www.shorttle.com/', '_blank')">
+          <a href="https://www.shorttle.com/" target="_blank">
             <img class="img img-raised rounded" src="{{ '/assets/img/faces/OliverShorttle.avif' | relative_url }}">
           </a>
           <div class="card-body">
