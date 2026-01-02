@@ -10,7 +10,9 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
 
 <div class="team-3">
   <div class="container">
-    <div class="row">
+    
+    <div class="row" id="team-members-row">
+      
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
           <a href="javascript:;">
@@ -109,7 +111,7 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
         <!-- <p class="lead">This is the paragraph where you can write more details about your team. Keep you user engaged by providing meaningful information.</p> -->
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="co-leads-row">
       
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
@@ -149,7 +151,7 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
         <!-- <p class="lead">This is the paragraph where you can write more details about your team. Keep you user engaged by providing meaningful information.</p> -->
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="pis-row">
       
       <div class="col-lg-4 col-md-5 mx-auto">
         <div class="card card-profile" data-background="full">
@@ -190,3 +192,38 @@ featured_image: /assets/img/illustrations/two_face_planet.jpg
     </div>
   </div>
 </div>
+
+<script>
+  // Shuffle function using Fisher-Yates algorithm
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  // Randomize team members on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Shuffle team members
+    const teamRow = document.getElementById('team-members-row');
+    if (teamRow) {
+      const cards = Array.from(teamRow.children);
+      shuffle(cards).forEach(card => teamRow.appendChild(card));
+    }
+
+    // Shuffle co-leads
+    const coleadsRow = document.getElementById('co-leads-row');
+    if (coleadsRow) {
+      const cards = Array.from(coleadsRow.children);
+      shuffle(cards).forEach(card => coleadsRow.appendChild(card));
+    }
+
+    // Shuffle PIs
+    const pisRow = document.getElementById('pis-row');
+    if (pisRow) {
+      const cards = Array.from(pisRow.children);
+      shuffle(cards).forEach(card => pisRow.appendChild(card));
+    }
+  });
+</script>
