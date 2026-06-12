@@ -1,5 +1,5 @@
 // Interra collaboration roster. Three nodes: Groningen, Cambridge, Toronto.
-// Roles follow the collaboration agreement: PIs, Institutional Co-Leads, Members.
+// Roles: PIs, Co-Leads, Members.
 // Order within each tier is shuffled client-side for fair display.
 
 export const pis = [
