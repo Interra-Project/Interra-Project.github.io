@@ -83,4 +83,14 @@ export const papers = [
     lay:
       'We zoom in on the handful of real planets JWST can study best and predict what their atmospheres might look like, giving observers a concrete guide for what to look for and what it would mean.',
   },
+  {
+    n: 'IX',
+    title: 'Tidal heating and the dynamical evolution of close-in planets',
+    authors: 'Interra Collaboration',
+    status: 'In preparation',
+    abstract:
+      'We model the tidal heating and orbital evolution of close-in rocky planets and sub-Neptunes across the Interra ensembles, quantifying how dynamical forcing couples to interior and atmospheric evolution, prolonging molten interiors and reshaping long-term climate. Provisional abstract for the 2027 release.',
+    lay:
+      'Close-in planets are continually flexed by their star’s gravity, and this tidal heating can keep their interiors molten and slowly reshape their orbits. We model how this dynamical push couples to a planet’s interior and atmosphere over time.',
+  },
 ];
