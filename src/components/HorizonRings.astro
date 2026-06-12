@@ -1,0 +1,47 @@
+---
+/*
+  Horizon-ring motif: concentric rings + core dot.
+  Preserves the aubergine -> amber direction (dark lower-left, warm upper-right).
+  Decorative only; hidden from assistive tech.
+*/
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 520, class: klass = '' } = Astro.props;
+const rings = [0.16, 0.30, 0.44, 0.58, 0.72, 0.88];
+const cx = size / 2;
+const cy = size / 2;
+---
+<svg
+  class={`horizon-rings ${klass}`}
+  width={size}
+  height={size}
+  viewBox={`0 0 ${size} ${size}`}
+  fill="none"
+  aria-hidden="true"
+  role="presentation"
+>
+  <defs>
+    <linearGradient id="horizonGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="var(--aubergine)" />
+      <stop offset="55%" stop-color="var(--strata-magma)" />
+      <stop offset="100%" stop-color="var(--amber)" />
+    </linearGradient>
+  </defs>
+  {rings.map((r) => (
+    <circle
+      cx={cx}
+      cy={cy}
+      r={(size / 2) * r}
+      stroke="url(#horizonGrad)"
+      stroke-width="1.5"
+      opacity={0.25 + r * 0.6}
+    />
+  ))}
+  <circle cx={cx} cy={cy} r={size * 0.045} fill="var(--strata-gold)" />
+</svg>
+
+<style>
+  .horizon-rings { max-width: 100%; height: auto; display: block; }
+</style>

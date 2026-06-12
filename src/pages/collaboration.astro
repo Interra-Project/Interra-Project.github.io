@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import StrataBand from '../components/StrataBand.astro';
+import { pis, coLeads, members } from '../data/team.js';
+
+const tiers = [
+  { id: 'pis', label: 'Principal Investigators', people: pis },
+  { id: 'coleads', label: 'Institutional Co-Leads', people: coLeads },
+  { id: 'members', label: 'Collaboration Members', people: members },
+];
+---
+<Base title="Collaboration" description="The Interra collaboration: a network of researchers across Groningen, Cambridge, and Toronto.">
+  <section class="section page-head">
+    <div class="container">
+      <p class="eyebrow">The collaboration</p>
+      <h1>A network across three nodes.</h1>
+      <p class="lead">
+        Interra brings together researchers in Groningen, Cambridge, and Toronto, working
+        in the open to build the next generation of planetary evolution models.
+      </p>
+    </div>
+  </section>
+
+  <StrataBand variant="rule" />
+
+  {tiers.map((tier) => (
+    <section class="section tier">
+      <div class="container">
+        <h2 class="tier-label">{tier.label}</h2>
+        <div class="people" id={`tier-${tier.id}`}>
+          {tier.people.map((p) => (
+            <a class="person" href={p.url} target="_blank" rel="noopener">
+              <span class="portrait">
+                <img src={p.img} alt={p.name} loading="lazy" width="240" height="240" />
+              </span>
+              <span class="person-name">{p.name}</span>
+              <span class="person-aff mono">{p.affiliation}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+</Base>
+
+<script>
+  // Fisher-Yates shuffle within each tier for fair display order.
+  function shuffle(parent) {
+    if (!parent) return;
+    const kids = Array.from(parent.children);
+    for (let i = kids.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [kids[i], kids[j]] = [kids[j], kids[i]];
+    }
+    kids.forEach((k) => parent.appendChild(k));
+  }
+  ['tier-pis', 'tier-coleads', 'tier-members'].forEach((id) =>
+    shuffle(document.getElementById(id))
+  );
+</script>
+
+<style>
+  .page-head { padding-bottom: 2rem; }
+  .tier { padding-block: clamp(2rem, 5vw, 3.5rem); }
+  .tier-label { font-size: var(--t-h2); color: var(--ink); margin-bottom: 1.75rem; }
+  .tier-label::before {
+    content: ''; display: inline-block; width: 28px; height: 3px;
+    background: var(--amber); vertical-align: middle; margin-right: 0.75rem;
+  }
+  .people { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.75rem; }
+  .person { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .person:hover { text-decoration: none; }
+  .portrait {
+    width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 3px;
+    background: var(--surface); border: 1px solid var(--divider);
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.15); transition: filter 0.2s ease, transform 0.4s ease; }
+  .person:hover .portrait img { filter: grayscale(0); transform: scale(1.04); }
+  .person-name { font-weight: 500; color: var(--ink); margin-top: 0.85rem; font-size: 1.05rem; }
+  .person-aff { color: var(--fog); font-size: 0.72rem; margin-top: 0.2rem; letter-spacing: 0.02em; }
+
+  @media (max-width: 860px) { .people { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .people { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } }
+</style>

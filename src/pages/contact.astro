@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import StrataBand from '../components/StrataBand.astro';
+---
+<Base title="Contact" description="Get in touch with the Interra Project.">
+  <section class="section page-head">
+    <div class="container">
+      <p class="eyebrow">Contact</p>
+      <h1>Get in touch.</h1>
+      <p class="lead">
+        For scientific enquiries, collaboration requests, or interest in the data
+        release, reach the team through GitHub or email.
+      </p>
+    </div>
+  </section>
+
+  <StrataBand variant="rule" />
+
+  <section class="section">
+    <div class="container contact-grid">
+      <a class="contact-card" href="https://github.com/orgs/Interra-Project/discussions" target="_blank" rel="noopener">
+        <span class="eyebrow">Discussion</span>
+        <h3>GitHub Discussions</h3>
+        <p>Open a thread to ask a question or start a conversation with the collaboration.</p>
+        <span class="contact-go mono">github.com/Interra-Project &rsaquo;</span>
+      </a>
+      <a class="contact-card" href="mailto:contact@interra-project.org">
+        <span class="eyebrow">Email</span>
+        <h3>contact@interra-project.org</h3>
+        <p>Write to the team directly for enquiries that do not fit a public thread.</p>
+        <span class="contact-go mono">Send an email &rsaquo;</span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-bottom: 2rem; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+  .contact-card {
+    display: block; padding: 2rem; border: 1px solid var(--divider);
+    border-radius: 3px; background: var(--surface); transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .contact-card:hover { border-color: var(--amber); transform: translateY(-2px); text-decoration: none; }
+  .contact-card h3 { color: var(--ink); margin: 0.4rem 0 0.7rem; word-break: break-word; }
+  .contact-card p { color: var(--graphite); }
+  .contact-go { color: var(--amber); font-size: 0.8rem; }
+  @media (max-width: 700px) { .contact-grid { grid-template-columns: 1fr; } }
+</style>

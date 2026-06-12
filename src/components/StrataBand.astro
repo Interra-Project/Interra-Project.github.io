@@ -1,0 +1,26 @@
+---
+/*
+  Cross-section band: the strata palette as a horizontal divider.
+  variant "rule" = thin gradient line; "bands" = stacked equal blocks with labels off.
+*/
+interface Props {
+  variant?: 'rule' | 'bands';
+  height?: number;
+}
+const { variant = 'rule', height = 6 } = Astro.props;
+const strata = ['gold', 'amber', 'magma', 'plum', 'cobalt', 'ink'];
+---
+{variant === 'rule' ? (
+  <hr class="strata-rule" style={`height:${height}px`} aria-hidden="true" />
+) : (
+  <div class="strata-bands" aria-hidden="true" style={`height:${height}px`}>
+    {strata.map((s) => (
+      <span style={`background:var(--strata-${s})`}></span>
+    ))}
+  </div>
+)}
+
+<style>
+  .strata-bands { display: flex; width: 100%; }
+  .strata-bands span { flex: 1; }
+</style>

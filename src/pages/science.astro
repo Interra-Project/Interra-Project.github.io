@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import StrataBand from '../components/StrataBand.astro';
+
+const challenges = [
+  { t: 'Sparse data', d: 'Exoplanet observations are limited in time and spectral coverage, and will remain so for decades.' },
+  { t: 'Closed models', d: 'Models are often bespoke to the group analysing the data, which limits reproducibility and interpretability.' },
+  { t: 'Static solves', d: 'The prevailing paradigm solves structural equations statically, missing the strong hysteresis of planetary climate and structure.' },
+  { t: 'Costly forward models', d: 'Expensive forward models cannot be used in formal inversion schemes, blocking model comparison and parameter estimation.' },
+];
+
+const goals = [
+  'Produce robust, comprehensive ensembles of planetary evolution paths that observational data can be compared against.',
+  'Make the missing physics and chemistry explicit, so that gaps are known and can be incorporated into interpretation.',
+  'Build an evolutionary modelling paradigm that increases in depth, breadth, and robustness over successive generations.',
+  'Provide a process-complete abiotic baseline against which claims of biosignatures can be tested.',
+];
+---
+<Base title="Science" description="The scientific rationale and goals of the Interra Project.">
+  <section class="section page-head">
+    <div class="container">
+      <p class="eyebrow">Scientific rationale &amp; goals</p>
+      <h1>Interpreting worlds beyond the Solar System.</h1>
+      <p class="lead">
+        We are at a frontier where the atmospheres and surfaces of planets around other
+        stars can be probed directly. Turning that data into understanding needs a new
+        kind of model.
+      </p>
+    </div>
+  </section>
+
+  <StrataBand variant="rule" />
+
+  <section class="section">
+    <div class="container">
+      <h2>Four challenges in interpreting exoplanet data</h2>
+      <div class="grid-2">
+        {challenges.map((c, i) => (
+          <article class="challenge">
+            <span class="mono num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{c.t}</h3>
+              <p>{c.d}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="note">
+        These challenges combine to create uncertainty and disagreement, most acutely
+        around the biogenicity of signals detected from exoplanets, where robust,
+        reproducible definitions of abiotic processes are essential.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container">
+      <p class="eyebrow">The response</p>
+      <h2>Open, evolutionary, process-complete, invertable.</h2>
+      <p class="ink-lead">
+        Interra shifts the paradigm for planetary modelling toward a framework in which
+        large ensembles of simulated planets are compared with data, and are documented
+        so that missing physics and chemistry is known. By probing the successes and
+        failures of successive generations of ensembles, we deepen our understanding of
+        the processes that shape planets over geological time.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Scientific goals</h2>
+      <ul class="goals">
+        {goals.map((g) => (
+          <li><span class="goal-mark mono">&rsaquo;</span>{g}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-bottom: 2rem; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem 2.5rem; margin-top: 1.5rem; }
+  .challenge { display: flex; gap: 1rem; align-items: baseline; }
+  .challenge .num { color: var(--amber); font-size: 0.85rem; }
+  .challenge h3 { margin: 0 0 0.35rem; }
+  .challenge p { font-size: var(--t-body-l); color: var(--graphite); margin: 0; }
+  .note { margin-top: 2.5rem; max-width: 70ch; color: var(--graphite); border-left: 3px solid var(--amber); padding-left: 1.25rem; }
+
+  .ink-lead { font-size: var(--t-h2); line-height: 1.5; color: var(--bone); max-width: 60ch; font-weight: 300; }
+
+  .goals { list-style: none; padding: 0; margin: 1.5rem 0 0; max-width: 70ch; }
+  .goals li { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--divider); font-size: var(--t-body-l); }
+  .goal-mark { color: var(--amber); font-weight: 700; }
+
+  @media (max-width: 760px) { .grid-2 { grid-template-columns: 1fr; } }
+</style>

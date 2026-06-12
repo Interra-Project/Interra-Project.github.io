@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import StrataBand from '../components/StrataBand.astro';
+import { papers, libraryUrl } from '../data/papers.js';
+---
+<Base title="Papers" description="Selected publications underpinning the Interra Project.">
+  <section class="section page-head">
+    <div class="container">
+      <p class="eyebrow">Publications</p>
+      <h1>The science behind the framework.</h1>
+      <p class="lead">
+        A selection of publications from the PROTEUS framework that underpins Interra.
+        The complete, authoritative list is maintained in the public library.
+      </p>
+      <p><a href={libraryUrl} target="_blank" rel="noopener" class="btn">Full publication library</a></p>
+    </div>
+  </section>
+
+  <StrataBand variant="rule" />
+
+  <section class="section">
+    <div class="container">
+      <ul class="papers">
+        {papers.map((p) => (
+          <li class="paper">
+            <span class="paper-thumb">
+              <img src={p.img} alt="" loading="lazy" width="160" height="120" />
+            </span>
+            <div class="paper-meta">
+              <h3>{p.title}</h3>
+              <p class="mono paper-cite">{p.author} &middot; {p.venue} &middot; {p.year}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-bottom: 2rem; }
+  .page-head .btn { margin-top: 0.5rem; }
+  .papers { list-style: none; padding: 0; margin: 0; }
+  .paper {
+    display: flex; gap: 1.5rem; align-items: center;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--divider);
+  }
+  .paper-thumb {
+    flex: 0 0 140px; aspect-ratio: 4/3; overflow: hidden; border-radius: 3px;
+    border: 1px solid var(--divider); background: var(--surface);
+  }
+  .paper-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .paper-meta h3 { margin: 0 0 0.45rem; color: var(--ink); font-size: 1.3rem; }
+  .paper-cite { color: var(--fog); font-size: 0.8rem; letter-spacing: 0.02em; margin: 0; }
+
+  @media (max-width: 560px) {
+    .paper { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .paper-thumb { flex-basis: auto; width: 100%; max-width: 220px; }
+  }
+</style>

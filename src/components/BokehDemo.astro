@@ -1,0 +1,104 @@
+---
+/*
+  BokehJS standalone proof-of-concept: interactive figure rendered fully client-side
+  from the CDN library, no Python server. Demonstrates the "interactive island on a
+  static page" path. The curves are illustrative synthetic trajectories, NOT real
+  Interra model output, and are labelled as such.
+*/
+const bokehVersion = '3.4.1';
+---
+<figure class="bokeh-figure">
+  <div id="bokeh-demo" class="bokeh-demo" role="img" aria-label="Illustrative interactive plot of synthetic magma-ocean cooling trajectories"></div>
+  <figcaption class="mono">
+    Illustrative preview &middot; synthetic trajectories, not model output &middot; pan, zoom, and hover are live
+  </figcaption>
+</figure>
+
+<script is:inline define:vars={{ bokehVersion }}>
+  (function () {
+    const STRATA = ['#F0BA5E', '#DE7037', '#A23E3C', '#6A2A4D', '#3E5B86', '#15101C'];
+
+    function fail() {
+      const el = document.getElementById('bokeh-demo');
+      if (el) el.innerHTML = '<p style="font-family:monospace;color:#9C9298;padding:1rem">Interactive preview could not load (offline).</p>';
+    }
+
+    function addScript(src, onload) {
+      const s = document.createElement('script');
+      s.src = src;
+      s.crossOrigin = 'anonymous';
+      s.onload = onload;
+      s.onerror = fail;
+      document.head.appendChild(s);
+    }
+
+    function loadBokeh(cb) {
+      // Bokeh.Plotting (the figure API) lives in the separate `bokeh-api` bundle,
+      // which must load after the core bundle.
+      if (window.Bokeh && window.Bokeh.Plotting) return cb();
+      const base = `https://cdn.bokeh.org/bokeh/release`;
+      addScript(`${base}/bokeh-${bokehVersion}.min.js`, function () {
+        addScript(`${base}/bokeh-api-${bokehVersion}.min.js`, cb);
+      });
+    }
+
+    function draw() {
+      const el = document.getElementById('bokeh-demo');
+      if (!el) return;
+      const plt = Bokeh.Plotting;
+
+      const fig = plt.figure({
+        height: 380,
+        sizing_mode: 'stretch_width',
+        title: 'Synthetic magma-ocean cooling trajectories',
+        x_axis_label: 'time  [Myr]',
+        y_axis_label: 'mantle melt fraction',
+        background_fill_color: '#FAF5E6',
+        border_fill_color: '#FAF5E6',
+        outline_line_color: '#C8BCA9',
+        tools: 'pan,wheel_zoom,box_zoom,hover,reset',
+        toolbar_location: 'right',
+      });
+
+      // Deterministic synthetic decays: f(t) = exp(-t / tau), varying tau.
+      const taus = [4, 9, 16, 26, 40, 60];
+      const N = 120;
+      taus.forEach((tau, i) => {
+        const x = [], y = [];
+        for (let k = 0; k < N; k++) {
+          const t = (k / (N - 1)) * 100;
+          x.push(t);
+          y.push(Math.exp(-t / tau));
+        }
+        fig.line(x, y, { line_color: STRATA[i % STRATA.length], line_width: 2.5, legend_label: `gen ${i + 1}` });
+      });
+
+      // Interra typography + warm grid.
+      [fig.xaxis, fig.yaxis].forEach((axis) => {
+        axis.axis_label_text_font = 'JetBrains Mono';
+        axis.axis_label_text_font_style = 'normal';
+        axis.major_label_text_font = 'JetBrains Mono';
+        axis.axis_line_color = '#3A3140';
+      });
+      fig.xgrid.grid_line_color = '#E6DAB6';
+      fig.ygrid.grid_line_color = '#E6DAB6';
+      fig.title.text_font = 'Space Grotesk';
+      fig.title.text_color = '#15101C';
+      if (fig.legend && fig.legend.length) {
+        fig.legend[0].label_text_font = 'JetBrains Mono';
+        fig.legend[0].background_fill_color = '#F2EAD3';
+        fig.legend[0].border_line_color = '#C8BCA9';
+      }
+
+      plt.show(fig, '#bokeh-demo');
+    }
+
+    loadBokeh(draw);
+  })();
+</script>
+
+<style>
+  .bokeh-figure { margin: 0; border: 1px solid var(--divider); border-radius: 3px; background: var(--paper); padding: 0.75rem; }
+  .bokeh-demo { width: 100%; min-height: 380px; }
+  .bokeh-figure figcaption { color: var(--fog); font-size: 0.72rem; padding: 0.5rem 0.25rem 0.25rem; letter-spacing: 0.02em; }
+</style>

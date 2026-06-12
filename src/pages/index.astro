@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import HorizonRings from '../components/HorizonRings.astro';
+import StrataBand from '../components/StrataBand.astro';
+import SpectralReadout from '../components/SpectralReadout.astro';
+
+const pillars = [
+  {
+    k: '01',
+    t: 'Open source',
+    d: 'Every model, method, and data product is open from the start, under permissive licenses, so the community can scrutinise and reproduce the science.',
+  },
+  {
+    k: '02',
+    t: 'Evolutionary',
+    d: 'Planets are modelled as time-evolving systems, not static snapshots, capturing the hysteresis that static structural solves miss.',
+  },
+  {
+    k: '03',
+    t: 'Process-complete',
+    d: 'Interior, atmosphere, escape, and orbital processes are coupled in one framework, making explicit which physics and chemistry matter, and when.',
+  },
+];
+---
+<Base
+  title="Interra Project"
+  description="Interra builds open-source, evolutionary, process-complete models of planetary evolution, and the ensembles to interpret planetary and exoplanetary data."
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Interra Project</p>
+        <h1>Process-complete models of planetary evolution.</h1>
+        <p class="lead">
+          A coherent, systematic framework for simulating how planets evolve, and the
+          ensembles to test those models against planetary and exoplanetary data.
+        </p>
+        <div class="hero-cta">
+          <a href="/science" class="btn btn--solid">The science</a>
+          <a href="/data" class="btn btn--ghost-light">Model ensembles</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <HorizonRings size={460} />
+      </div>
+    </div>
+    <div class="container hero-readout">
+      <SpectralReadout bars={64} />
+      <p class="readout-cap mono">Ensemble identifier &middot; generations of planetary trajectories</p>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">The approach</p>
+      <h2>A new paradigm for planetary modelling.</h2>
+      <p class="section-intro">
+        In an era of observationally-driven discovery, interpreting JWST and the next
+        generation of exoplanet data needs models that are open, evolutionary, and
+        aware of their own uncertainties. Interra provides the abiotic baseline against
+        which the search for signs of life should be tested.
+      </p>
+      <div class="pillars">
+        {pillars.map((p) => (
+          <article class="pillar">
+            <span class="pillar-k mono">{p.k}</span>
+            <h3>{p.t}</h3>
+            <p>{p.d}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StrataBand variant="rule" />
+
+  <!-- Built on PROTEUS -->
+  <section class="section section--aubergine">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">The engine</p>
+        <h2>Built on the PROTEUS framework.</h2>
+      </div>
+      <div>
+        <p>
+          Interra's model ensembles are produced with
+          <a href="https://github.com/FormingWorlds/PROTEUS" target="_blank" rel="noopener">PROTEUS</a>,
+          an open-source framework that couples interior, atmosphere, outgassing, escape,
+          and orbital evolution into a single time-evolving solve. New physics and chemistry
+          are added inside the framework, tested, and documented in the open.
+        </p>
+        <p class="mt">
+          <a href="https://proteus-framework.org" target="_blank" rel="noopener" class="btn btn--ghost-light">proteus-framework.org</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { background: var(--ink); color: var(--bone); padding-top: clamp(3rem, 7vw, 5.5rem); padding-bottom: 2rem; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: center; }
+  .hero-copy h1 { color: var(--cream); font-size: var(--t-hero); max-width: 16ch; }
+  .hero-copy .lead { color: var(--bone); margin-top: 1.25rem; }
+  .hero-cta { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+  .hero-art { display: flex; justify-content: center; }
+  .hero-readout { margin-top: 2.5rem; padding-bottom: 0.5rem; }
+  .readout-cap { color: var(--fog); font-size: 0.72rem; margin: 0.6rem 0 0; letter-spacing: 0.04em; }
+
+  .section-intro { font-size: var(--t-body-l); max-width: 60ch; color: var(--graphite); margin-bottom: 2.5rem; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+  .pillar { border-top: 2px solid var(--amber); padding-top: 1rem; }
+  .pillar-k { color: var(--amber); font-size: 0.8rem; letter-spacing: 0.1em; }
+  .pillar h3 { margin: 0.4rem 0 0.6rem; }
+  .pillar p { font-size: var(--t-body-l); color: var(--graphite); }
+
+  .split { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 2.5rem; align-items: start; }
+  .split a { color: var(--amber); }
+  .mt { margin-top: 1.5rem; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { order: -1; max-width: 320px; }
+    .pillars { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+  }
+</style>

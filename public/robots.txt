@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://interra-project.org/sitemap-index.xml

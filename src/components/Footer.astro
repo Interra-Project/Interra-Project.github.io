@@ -1,0 +1,47 @@
+---
+const year = 2026;
+---
+<footer class="site-footer">
+  <hr class="strata-rule" aria-hidden="true" />
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/img/logo/logo_interra_light.svg" alt="Interra Project" width="170" height="46" />
+      <p class="footer-tag mono">Process-complete planetary evolution.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="/science">Science</a>
+      <a href="/collaboration">Collaboration</a>
+      <a href="/data">Data</a>
+      <a href="/papers">Papers</a>
+      <a href="/contact">Contact</a>
+      <a href="https://github.com/interra-project" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+  <div class="container footer-legal">
+    <span class="mono">&copy; {year} Interra Project</span>
+    <span class="mono">Three nodes: Groningen &middot; Cambridge &middot; Toronto</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--ink); color: var(--bone); margin-top: 0; }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 2.5rem; flex-wrap: wrap; padding-block: 3rem 1.5rem;
+  }
+  .footer-brand img { height: 40px; width: auto; }
+  .footer-tag { color: var(--fog); font-size: 0.8rem; margin: 0.9rem 0 0; }
+  .footer-nav { display: flex; flex-direction: column; gap: 0.65rem; }
+  .footer-nav a {
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--bone);
+  }
+  .footer-nav a:hover { color: var(--amber); text-decoration: none; }
+  .footer-legal {
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    padding-bottom: 2rem; font-size: 0.72rem; color: var(--fog);
+    border-top: 1px solid color-mix(in srgb, var(--fog) 30%, transparent);
+    padding-top: 1.2rem;
+  }
+  @media (max-width: 600px) { .footer-nav { flex-direction: row; flex-wrap: wrap; gap: 1rem; } }
+</style>

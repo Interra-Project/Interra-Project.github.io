@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import StrataBand from '../components/StrataBand.astro';
+import BokehDemo from '../components/BokehDemo.astro';
+
+const access = [
+  { t: 'Bulk download', d: 'Full ensemble outputs in self-describing formats, for analysis on your own systems.' },
+  { t: 'Programmatic API', d: 'Query and retrieve individual planets or runs without downloading whole archives.' },
+  { t: 'Interactive exploration', d: 'Explore ensembles in the browser, with visualisation served next to the data.' },
+];
+---
+<Base title="Data" description="Interra model ensembles: planned open data release with bulk download, a programmatic API, and interactive exploration.">
+  <section class="section page-head">
+    <div class="container">
+      <p class="eyebrow">Model ensembles &middot; first release 2027</p>
+      <h1>Open ensembles of planetary evolution.</h1>
+      <p class="lead">
+        Interra will release large ensembles of simulated planets, openly, for the
+        community to compare against planetary and exoplanetary data.
+      </p>
+    </div>
+  </section>
+
+  <StrataBand variant="rule" />
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Interactive preview</p>
+      <h2>Visualisation, in the browser.</h2>
+      <p class="section-intro">
+        The release will let you explore ensembles interactively. The figure below is a
+        live, in-browser proof of concept built on the same visualisation stack that will
+        front the data, shown here with synthetic trajectories.
+      </p>
+      <BokehDemo />
+    </div>
+  </section>
+
+  <section class="section section--ink">
+    <div class="container">
+      <p class="eyebrow">Planned access model</p>
+      <h2>Three ways in.</h2>
+      <div class="access">
+        {access.map((a, i) => (
+          <article class="access-item">
+            <span class="access-k mono">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{a.t}</h3>
+            <p>{a.d}</p>
+          </article>
+        ))}
+      </div>
+      <p class="access-note">
+        Scientists worldwide will be able to register for an account, accept the
+        data-use terms, and download. Until the first release, code and data are
+        developed in the open through the project's repositories.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta-row">
+      <div>
+        <h2>Before the release</h2>
+        <p>Follow development, or get in touch to register your interest in the data.</p>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://github.com/interra-project" target="_blank" rel="noopener" class="btn">Development on GitHub</a>
+        <a href="/contact" class="btn btn--solid">Register interest</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-bottom: 2rem; }
+  .section-intro { font-size: var(--t-body-l); max-width: 62ch; color: var(--graphite); margin-bottom: 2rem; }
+  .access { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-top: 1.5rem; }
+  .access-item { border-top: 2px solid var(--amber); padding-top: 1rem; }
+  .access-k { color: var(--amber); font-size: 0.8rem; }
+  .access-item h3 { color: var(--cream); margin: 0.4rem 0 0.5rem; }
+  .access-item p { color: var(--bone); font-size: var(--t-body-l); }
+  .access-note { margin-top: 2.5rem; max-width: 68ch; color: var(--fog); border-left: 3px solid var(--amber); padding-left: 1.25rem; }
+
+  .cta-row { display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 760px) { .access { grid-template-columns: 1fr; } }
+</style>
