@@ -1,6 +1,6 @@
 // PLACEHOLDER entries for the first Interra 2027 Release.
-// Replace titles / authors / abstract / lay_summary with the real papers before launch.
-// The abstracts below describe intended scope, not results; all are marked provisional.
+// Topics are set; titles and text are working drafts to be finalised before launch.
+// Abstracts describe intended scope, not results, and are marked provisional.
 
 export const papers = [
   {
@@ -15,62 +15,72 @@ export const papers = [
   },
   {
     n: 'II',
-    title: 'Interra Generation 1: ensembles of magma-ocean planet evolution',
+    title: 'Long-lived magma oceans: the persistence of molten interiors over geological time',
     authors: 'Interra Collaboration',
     status: 'In preparation',
     abstract:
-      'We present the first generation of Interra model ensembles, spanning a range of planet masses, compositions, and instellations for rocky planets in their magma-ocean stage. We characterise how interior redox state, volatile inventory, and stellar irradiation shape the observable atmosphere, and release the ensembles together with a fast emulator. Provisional abstract for the 2027 release.',
+      'We quantify how long magma oceans persist within rocky and volatile-rich planets across the Interra ensembles, identifying the compositional, thermal, and orbital conditions that prolong or shorten the molten phase, and the consequences for the observable atmosphere. Provisional abstract for the 2027 release.',
     lay:
-      'Our first public data release simulates thousands of young, partly molten rocky planets across many starting conditions. It shows how a planet’s chemistry and its host star together shape the atmosphere we would observe, and we share all of the results openly.',
+      'Young planets are born partly molten. We work out how long that internal magma ocean can last, in some cases for billions of years, and what keeps it molten, because a still-molten interior leaves a lasting mark on a planet’s atmosphere.',
   },
   {
     n: 'III',
-    title: 'Volatile cycling between atmosphere and interior over geological time',
+    title: 'Locked in the core: volatile sequestration through core-mantle equilibration',
     authors: 'Interra Collaboration',
     status: 'In preparation',
     abstract:
-      'Using the Interra ensembles, we trace how water and other volatiles partition between a planet’s interior and atmosphere as it cools, and how this cycling governs long-term climate and observability across the parameter space. Provisional abstract for the 2027 release.',
+      'We quantify how core-mantle equilibration during accretion partitions volatile elements into a planet’s metallic core, depleting the budget available to the mantle and atmosphere. Across the Interra ensembles we assess how this hidden reservoir reshapes long-term outgassing and observable composition. Provisional abstract for the 2027 release.',
     lay:
-      'Water and other gases move back and forth between a planet’s rocky interior and its atmosphere as it ages. We use Interra to follow this exchange and show how it sets a planet’s long-term climate and what we would be able to detect.',
+      'As a planet forms, some of its volatile elements get trapped in the iron core, hidden from the surface for good. We quantify how much is locked away and how this hidden reservoir changes the atmosphere a planet can build over time.',
   },
   {
     n: 'IV',
-    title: 'Evolutionary inversion of exoplanet spectra with Interra emulators',
+    title: 'The redox evolution of super-Earths and sub-Neptunes over geological time',
     authors: 'Interra Collaboration',
     status: 'In preparation',
     abstract:
-      'We build the Interra ensembles into a framework for evolutionary inversion, constraining a planet’s history from its spectrum while ruling out physically implausible states and propagating forward-model uncertainty. We release fast emulators for community retrieval workflows. Provisional abstract for the 2027 release.',
+      'We trace how the oxidation state of super-Earth and sub-Neptune interiors and atmospheres evolves over time across the Interra ensembles, linking accretional starting conditions to the redox trajectories that govern atmospheric chemistry and observability. Provisional abstract for the 2027 release.',
     lay:
-      'Instead of reading a planet’s atmosphere from its light in isolation, we use Interra to ask which evolutionary histories could actually have produced what we see, and we share fast tools so others can do the same in their own analyses.',
+      'Whether a planet’s chemistry is oxidising or reducing shapes everything from its gases to its potential for life, and it shifts as the planet ages. We follow this redox evolution for super-Earths and sub-Neptunes from birth onward.',
   },
   {
     n: 'V',
-    title: 'Interior structure and mass-radius relations across the Interra ensembles',
+    title: 'Equilibrium and disequilibrium in the atmospheres of evolving planets',
     authors: 'Interra Collaboration',
     status: 'In preparation',
     abstract:
-      'We derive the interior structure and mass-radius relations for the Interra ensembles, propagating composition, thermal state, and phase transitions from core to surface with a thermodynamically consistent treatment. We quantify how the molten-to-solid transition shifts the inferred radius and the resulting degeneracies for observed planets. Provisional abstract for the 2027 release.',
+      'We model the atmospheric chemistry of the Interra ensembles in both thermochemical equilibrium and disequilibrium, driven by mixing, photochemistry, and outgassing, and identify where departures from equilibrium imprint detectable spectral signatures. Provisional abstract for the 2027 release.',
     lay:
-      'Two planets of identical size and mass can be very different inside, one solid, one partly molten. We compute how a planet’s interior sets its measured size, and show how this changes what we can conclude about real, observed worlds.',
+      'The gases in a planet’s atmosphere are constantly reacting: sometimes they settle into balance, sometimes they are held out of it by sunlight, mixing, and volcanism. We model both cases and find which leave a visible mark in a planet’s light.',
   },
   {
     n: 'VI',
-    title: 'Atmospheric chemistry and redox-dependent spectra of evolving rocky planets',
+    title: 'Atmospheric escape and the emergence of planetary climate regimes',
     authors: 'Interra Collaboration',
     status: 'In preparation',
     abstract:
-      'We model the atmospheric chemistry of evolving rocky planets as a function of mantle oxygen fugacity and compute the resulting transmission and emission spectra across the Interra ensembles. We identify the spectral features that trace redox state and assess their detectability with current and planned facilities. Provisional abstract for the 2027 release.',
+      'We couple atmospheric escape to climate across the Interra ensembles, mapping how the loss of volatiles to space sets the boundaries between distinct long-term climate regimes for rocky and volatile-rich planets. Provisional abstract for the 2027 release.',
     lay:
-      'How oxidised a planet’s rocky interior is leaves a fingerprint in its atmosphere, and therefore in its light. We model this across many planets, identify which features in a spectrum reveal a planet’s chemistry, and ask whether telescopes could see them.',
+      'Planets can lose their atmospheres to space, and how much they lose helps decide whether they end up hot, temperate, or barren. We map these climate outcomes and what tips a planet from one into another.',
   },
   {
     n: 'VII',
-    title: 'Atmospheric escape and the long-term retention of volatiles',
+    title: 'Synthetic observables for the rocky exoplanet population',
     authors: 'Interra Collaboration',
     status: 'In preparation',
     abstract:
-      'Using the Interra ensembles, we follow atmospheric escape driven by stellar irradiation over time and quantify which planets retain their volatiles and which are stripped. We connect escape histories to the present-day atmospheres that observations would reveal. Provisional abstract for the 2027 release.',
+      'We generate synthetic observables, transmission and emission spectra, bulk densities, and population-level statistics, for the full Interra ensembles, processed through instrument pipelines, to forecast how evolutionary diversity manifests across the rocky exoplanet population. Provisional abstract for the 2027 release.',
     lay:
-      'Young stars can blow away a planet’s atmosphere. We track this loss over billions of years to find which planets keep their air and water and which lose them, and how that shapes what we would observe today.',
+      'We turn thousands of simulated planets into the kind of data telescopes actually collect, then ask what patterns emerge across the whole population, so observers know what to expect and how to read it.',
+  },
+  {
+    n: 'VIII',
+    title: 'Synthetic observables for the most JWST-accessible super-Earths and sub-Neptunes',
+    authors: 'Interra Collaboration',
+    status: 'In preparation',
+    abstract:
+      'We produce tailored synthetic observables for the specific super-Earths and sub-Neptunes most accessible to JWST, mapping Interra’s evolutionary predictions onto named targets to guide observing strategy and interpretation. Provisional abstract for the 2027 release.',
+    lay:
+      'We zoom in on the handful of real planets JWST can study best and predict what their atmospheres might look like, giving observers a concrete guide for what to look for and what it would mean.',
   },
 ];
