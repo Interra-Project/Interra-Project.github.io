@@ -1,4 +1,4 @@
-// Interra collaboration roster. Three nodes: Groningen, Cambridge, Toronto.
+// Interra collaboration roster: Groningen, Cambridge, Toronto.
 // Roles: PIs, Co-Leads, Members.
 // Order within each tier is shuffled client-side for fair display.
 
