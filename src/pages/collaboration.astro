@@ -31,7 +31,7 @@ const tiers = [
           {tier.people.map((p) => (
             <a class="person" href={p.url} target="_blank" rel="noopener">
               <span class="portrait">
-                <img src={p.img} alt={p.name} loading="lazy" width="240" height="240" />
+                <img src={p.img} alt={p.name} loading="lazy" width="240" height="240" style={p.pos ? `object-position:${p.pos}` : undefined} />
               </span>
               <span class="person-name">{p.name}</span>
               <span class="person-aff mono">{p.affiliation}</span>

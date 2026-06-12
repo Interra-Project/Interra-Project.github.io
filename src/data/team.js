@@ -4,7 +4,7 @@
 
 export const pis = [
   { name: 'Tim Lichtenberg', affiliation: 'University of Groningen', url: 'https://www.formingworlds.space', img: '/img/faces/TimLichtenberg.avif' },
-  { name: 'Sara Seager', affiliation: 'University of Toronto', url: 'https://www.saraseager.com/', img: '/img/faces/SaraSeager.avif' },
+  { name: 'Sara Seager', affiliation: 'University of Toronto', url: 'https://www.saraseager.com/', img: '/img/faces/SaraSeager.avif', pos: 'center 18%' },
   { name: 'Oliver Shorttle', affiliation: 'University of Cambridge', url: 'https://www.shorttle.com/', img: '/img/faces/OliverShorttle.avif' },
 ];
 
