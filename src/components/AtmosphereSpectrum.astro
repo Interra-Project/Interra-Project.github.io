@@ -30,17 +30,34 @@ function model(lam) {
   return v;
 }
 
-// Dense sampling for a smooth curve.
-const N = 260;
+// Fine structure: a forest of high-frequency molecular lines on top of the broad
+// bands, stronger inside absorption features, so the model curve looks jagged like
+// a real high-resolution transmission spectrum. Binned data points stay smooth.
+function envStrength(lam) {
+  let m = 0;
+  for (const f of features) m += f.amp * Math.exp(-((lam - f.mu) ** 2) / (2 * f.sigma ** 2));
+  return Math.min(1, m / 100);
+}
+function hash(n) { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+function fine(lam, i) {
+  const es = envStrength(lam);
+  const s = Math.sin(lam * 55.0) * 2.4 + Math.sin(lam * 101.0 + 0.9) * 1.8
+          + Math.sin(lam * 181.0 + 2.3) * 1.3 + Math.sin(lam * 293.0 + 1.1) * 0.9;
+  const jitter = (hash(i) - 0.5) * 2;
+  return s * (0.45 + 1.1 * es) + jitter * (1.2 + 4.2 * es);
+}
+
+// Dense sampling so the jagged line forest resolves crisply.
+const N = 720;
 const raw = [];
 for (let i = 0; i < N; i++) {
   const lam = lamMin + (lamMax - lamMin) * (i / (N - 1));
-  raw.push({ lam, v: model(lam) });
+  raw.push({ lam, v: model(lam) + fine(lam, i) });
 }
 const vmin = Math.min(...raw.map(r => r.v));
 const vmax = Math.max(...raw.map(r => r.v));
 const R = vmax - vmin;
-const lo = vmin - 0.16 * R, hi = vmax + 0.22 * R;
+const lo = vmin - 0.12 * R, hi = vmax + 0.16 * R;
 
 const sx = (lam) => x0 + (x1 - x0) * (lam - lamMin) / (lamMax - lamMin);
 const sy = (v) => yBot - (yBot - yTop) * (v - lo) / (hi - lo);
@@ -96,7 +113,7 @@ const ticks = [1, 2, 3, 4, 5].map(t => ({ x: +sx(t).toFixed(1), label: String(t)
 
   <!-- model fill + curve -->
   <path d={areaPath} fill="url(#atmoFill)" />
-  <path d={modelPath} fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+  <path d={modelPath} fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
 
   <!-- binned data points with error bars -->
   {data.map(d => (
