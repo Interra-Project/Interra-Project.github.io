@@ -14,13 +14,16 @@ const lamMin = 0.6, lamMax = 5.2;     // wavelength range, micron
 
 // Absorption features as Gaussians: band centre (micron), width, amplitude.
 const features = [
-  { mu: 1.15, sigma: 0.10, amp: 26 },
-  { mu: 1.40, sigma: 0.12, amp: 52 },
-  { mu: 1.90, sigma: 0.14, amp: 46 },
-  { mu: 2.70, sigma: 0.18, amp: 64 },
-  { mu: 3.30, sigma: 0.16, amp: 54 },
-  { mu: 4.30, sigma: 0.17, amp: 96 },
-  { mu: 4.65, sigma: 0.10, amp: 40 },
+  { mu: 0.76, sigma: 0.05, amp: 55 },   // O2 A-band (biosignature)
+  { mu: 1.15, sigma: 0.10, amp: 26 },   // H2O
+  { mu: 1.27, sigma: 0.05, amp: 30 },   // O2
+  { mu: 1.40, sigma: 0.12, amp: 52 },   // H2O
+  { mu: 1.90, sigma: 0.14, amp: 46 },   // H2O
+  { mu: 2.30, sigma: 0.12, amp: 40 },   // CH4
+  { mu: 2.70, sigma: 0.18, amp: 60 },   // H2O
+  { mu: 3.30, sigma: 0.16, amp: 62 },   // CH4 (biosignature)
+  { mu: 4.30, sigma: 0.17, amp: 96 },   // CO2
+  { mu: 4.65, sigma: 0.10, amp: 40 },   // CO
 ];
 
 function model(lam) {
@@ -78,14 +81,22 @@ for (let i = 0; i < nData; i++) {
 
 // Molecular feature labels (subscripts rendered with tspans, font-agnostic).
 const labels = [
+  { lam: 0.76, main: 'O', sub: '2', post: '', emph: true },   // biosignature
   { lam: 1.40, main: 'H', sub: '2', post: 'O', emph: false },
   { lam: 2.70, main: 'H', sub: '2', post: 'O', emph: false },
-  { lam: 3.30, main: 'CH', sub: '4', post: '', emph: false },
-  { lam: 4.30, main: 'CO', sub: '2', post: '', emph: true },
+  { lam: 3.30, main: 'CH', sub: '4', post: '', emph: true },  // biosignature
+  { lam: 4.30, main: 'CO', sub: '2', post: '', emph: false },
   { lam: 4.65, main: 'CO', sub: '', post: '', emph: false },
 ].map(l => ({ ...l, x: +sx(l.lam).toFixed(1), peakY: +sy(model(l.lam)).toFixed(1) }));
 
 const ticks = [1, 2, 3, 4, 5].map(t => ({ x: +sx(t).toFixed(1), label: String(t) }));
+
+// Biosignature tie: O2 (A-band) and CH4 coexisting in chemical disequilibrium.
+const o2m = labels.find(l => l.lam === 0.76);
+const ch4m = labels.find(l => l.lam === 3.30);
+const bioY = 17;
+const bioMid = +((o2m.x + ch4m.x) / 2).toFixed(1);
+const bioGap = 126;
 ---
 <svg
   class="atmo-spectrum"
@@ -132,6 +143,17 @@ const ticks = [1, 2, 3, 4, 5].map(t => ({ x: +sx(t).toFixed(1), label: String(t)
       </text>
     </g>
   ))}
+
+  <!-- biosignature: O2 (A-band) + CH4 in chemical disequilibrium -->
+  <g class="biosig">
+    <line x1={o2m.x} y1={bioY} x2={bioMid - bioGap} y2={bioY} />
+    <line x1={bioMid + bioGap} y1={bioY} x2={ch4m.x} y2={bioY} />
+    <line x1={o2m.x} y1={bioY} x2={o2m.x} y2={bioY + 7} />
+    <line x1={ch4m.x} y1={bioY} x2={ch4m.x} y2={bioY + 7} />
+    <line class="bio-drop" x1={o2m.x} y1={bioY + 7} x2={o2m.x} y2={o2m.peakY - 16} />
+    <line class="bio-drop" x1={ch4m.x} y1={bioY + 7} x2={ch4m.x} y2={ch4m.peakY - 16} />
+    <text x={bioMid} y={bioY + 4} text-anchor="middle" class="bio-label">disequilibrium biosignature</text>
+  </g>
 </svg>
 
 <style>
@@ -140,4 +162,7 @@ const ticks = [1, 2, 3, 4, 5].map(t => ({ x: +sx(t).toFixed(1), label: String(t)
   .axis-unit { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; fill: var(--fog); }
   .feat { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.02em; fill: var(--fog); }
   .feat-emph { fill: var(--strata-gold); }
+  .biosig line { stroke: var(--strata-gold); stroke-width: 1.2; }
+  .biosig .bio-drop { stroke-opacity: 0.4; stroke-dasharray: 2 3; }
+  .bio-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; fill: var(--strata-gold); }
 </style>
