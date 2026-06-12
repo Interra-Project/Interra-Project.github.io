@@ -1,0 +1,132 @@
+---
+/*
+  Pre-launch password gate. Client-side only (the site is static), so this keeps the
+  preview out of public and search-engine view; it is not hard security. Replace the
+  PASSWORD_HASH below with the SHA-256 (hex) of the chosen password:
+      python3 -c "import hashlib;print(hashlib.sha256('YOURPASSWORD'.encode()).hexdigest())"
+  The plaintext password is never stored, only its hash. A self-contained SHA-256 is
+  bundled so it also works over http (e.g. the Tailscale preview), where the browser's
+  crypto.subtle is unavailable.
+*/
+const PASSWORD_HASH = 'beb74132ab3627fcc31a1bda3845524048f3cf88cd6ff0a32a9d11a57f9ab546'; // temporary: "interra2027"
+---
+<div class="gate" role="dialog" aria-modal="true" aria-label="Password required">
+  <form class="gate-form" id="interra-gate">
+    <img class="gate-logo" src="/img/logo/logo_interra_light.svg" alt="Interra Project" width="200" height="204" />
+    <div class="gate-row">
+      <input
+        type="password" id="interra-gate-pw" class="gate-input"
+        placeholder="Enter password" aria-label="Password"
+        autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+      />
+      <button type="submit" class="gate-btn" aria-label="Enter">&rsaquo;</button>
+    </div>
+    <p class="gate-error" id="interra-gate-error" aria-live="polite"></p>
+  </form>
+</div>
+
+<script is:inline define:vars={{ PASSWORD_HASH }}>
+  (function () {
+    // Compact SHA-256 (ASCII), works without crypto.subtle. Public domain (geraintluff).
+    function sha256(ascii) {
+      function rr(v, a) { return (v >>> a) | (v << (32 - a)); }
+      var mp = Math.pow, maxWord = mp(2, 32), result = '', words = [], i, j;
+      var bitLen = ascii.length * 8;
+      var hash = sha256.h = sha256.h || [];
+      var k = sha256.k = sha256.k || [];
+      var pc = k.length, comp = {};
+      for (var cand = 2; pc < 64; cand++) {
+        if (!comp[cand]) {
+          for (i = 0; i < 313; i += cand) comp[i] = cand;
+          hash[pc] = (mp(cand, 0.5) * maxWord) | 0;
+          k[pc++] = (mp(cand, 1 / 3) * maxWord) | 0;
+        }
+      }
+      ascii += '\x80';
+      while (ascii.length % 64 - 56) ascii += '\x00';
+      for (i = 0; i < ascii.length; i++) {
+        j = ascii.charCodeAt(i);
+        if (j >> 8) return '';
+        words[i >> 2] |= j << ((3 - i) % 4) * 8;
+      }
+      words[words.length] = (bitLen / maxWord) | 0;
+      words[words.length] = bitLen;
+      for (j = 0; j < words.length;) {
+        var w = words.slice(j, j += 16), oldHash = hash;
+        hash = hash.slice(0, 8);
+        for (i = 0; i < 64; i++) {
+          var w15 = w[i - 15], w2 = w[i - 2];
+          var a = hash[0], e = hash[4];
+          var t1 = hash[7] + (rr(e, 6) ^ rr(e, 11) ^ rr(e, 25)) + ((e & hash[5]) ^ (~e & hash[6])) + k[i]
+            + (w[i] = (i < 16) ? w[i] : (w[i - 16] + (rr(w15, 7) ^ rr(w15, 18) ^ (w15 >>> 3)) + w[i - 7]
+              + (rr(w2, 17) ^ rr(w2, 19) ^ (w2 >>> 10))) | 0);
+          var t2 = (rr(a, 2) ^ rr(a, 13) ^ rr(a, 22)) + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+          hash = [(t1 + t2) | 0].concat(hash);
+          hash[4] = (hash[4] + t1) | 0;
+        }
+        for (i = 0; i < 8; i++) hash[i] = (hash[i] + oldHash[i]) | 0;
+      }
+      for (i = 0; i < 8; i++)
+        for (j = 3; j + 1; j--) {
+          var b = (hash[i] >> (j * 8)) & 255;
+          result += ((b < 16) ? 0 : '') + b.toString(16);
+        }
+      return result;
+    }
+
+    var form = document.getElementById('interra-gate');
+    var pw = document.getElementById('interra-gate-pw');
+    var err = document.getElementById('interra-gate-error');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (sha256(pw.value || '') === PASSWORD_HASH) {
+        try { sessionStorage.setItem('interra_gate', 'ok'); } catch (e) {}
+        document.documentElement.classList.add('authed');
+      } else {
+        err.textContent = 'Incorrect password';
+        form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+        pw.value = ''; pw.focus();
+      }
+    });
+    try { pw.focus(); } catch (e) {}
+  })();
+</script>
+
+<style>
+  .gate {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--ink);
+    padding: 2rem;
+  }
+  :global(html.authed) .gate { display: none; }
+
+  .gate-form { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 320px; }
+  .gate-logo { width: 200px; max-width: 60vw; height: auto; margin-bottom: 2.5rem; }
+  .gate-row { display: flex; width: 100%; gap: 0.5rem; }
+  .gate-input {
+    flex: 1; background: transparent; color: var(--cream);
+    border: 1px solid var(--graphite); border-radius: 2px;
+    padding: 0.7rem 0.9rem; font-family: var(--font-mono); font-size: 0.95rem;
+    letter-spacing: 0.04em; outline: none; transition: border-color 0.15s ease;
+  }
+  .gate-input::placeholder { color: var(--fog); }
+  .gate-input:focus { border-color: var(--amber); }
+  .gate-btn {
+    flex: 0 0 auto; width: 44px; background: var(--amber); color: var(--ink);
+    border: none; border-radius: 2px; font-size: 1.4rem; line-height: 1; cursor: pointer;
+    font-family: var(--font-display); transition: background 0.15s ease;
+  }
+  .gate-btn:hover { background: var(--strata-gold); }
+  .gate-error { color: var(--amber); font-family: var(--font-mono); font-size: 0.75rem; margin: 0.9rem 0 0; min-height: 1em; letter-spacing: 0.03em; }
+
+  .gate-form.shake { animation: gate-shake 0.4s; }
+  @keyframes gate-shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-5px); }
+    40%, 60% { transform: translateX(5px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .gate-form.shake { animation: none; } }
+</style>
