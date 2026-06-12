@@ -21,5 +21,5 @@ export const members = [
   { name: 'Imre Kisvárdai', affiliation: 'University of Groningen', url: 'https://github.com/IKisvardai', img: '/img/faces/ImreKisvardai.avif' },
   { name: 'Marijn van Dijk', affiliation: 'University of Groningen', url: 'https://github.com/MarijnJ0', img: '/img/faces/MarijnVanDijk.avif' },
   { name: 'Karen Stuitje', affiliation: 'University of Groningen', url: 'https://github.com/stuitje', img: '/img/faces/KarenStuitje.avif' },
-  { name: 'Patrick Bos', affiliation: 'University of Groningen', url: 'https://egpbos.nl/', img: '/img/faces/PatrickBos.avif' },
+  { name: 'Patrick Bos', affiliation: 'University of Groningen', url: 'https://egpbos.nl/', img: '/img/faces/PatrickBos.avif', pos: 'center 10%' },
 ];
