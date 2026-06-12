@@ -9,11 +9,19 @@ const challenges = [
   { t: 'Costly forward models', d: 'Expensive forward models cannot be used in formal inversion schemes, blocking model comparison and parameter estimation.' },
 ];
 
-const goals = [
-  'Produce robust, comprehensive ensembles of planetary evolution paths that observational data can be compared against.',
-  'Make the missing physics and chemistry explicit, so that gaps are known and can be incorporated into interpretation.',
-  'Build an evolutionary modelling paradigm that increases in depth, breadth, and robustness over successive generations.',
-  'Provide a process-complete abiotic baseline against which claims of biosignatures can be tested.',
+const strands = [
+  {
+    t: 'Connected processes of planetary evolution',
+    d: 'Understand how planets, emerging from their magma-ocean epochs during accretion, evolve into the worlds we observe today. Many interacting processes govern the long-term interior, atmosphere, and surface state of low-mass planets; bringing models of each into one coherent framework captures that interconnectedness. Initial generations focus on the mantles of super-Earths and sub-Neptunes, and the volatile cycling between atmosphere and interior over geological time, building toward describing the emergence of temperate, potentially habitable surface conditions.',
+  },
+  {
+    t: 'Quantifying model uncertainty',
+    d: 'Many parameters, from rock rheology to molecular cross-sections, underpin every ensemble. By sensitivity-testing evolutionary outcomes against the uncertainty in those parameters, Interra reveals how "fuzzy" the abiotic baseline is: the range of planetary states reachable without life. Knowing which parameters matter most, yet are least constrained, shows where to be cautious in our inferences and motivates the experimental work that would sharpen them.',
+  },
+  {
+    t: 'Evolutionary inversion',
+    d: 'Today’s exoplanet interpretation leans on free retrieval, inferring an atmosphere’s composition from its spectrum without asking whether that atmosphere could physically have come to exist. Interra builds the ensembles into a framework for evolutionary inversion: inference constrained by how a planet actually evolves. It rules out histories that are physically implausible, carries forward-model uncertainty through to the result, and ships fast emulators (statistical surrogates of the full simulations) alongside each data release, so the community can use them in their own retrieval workflows.',
+  },
 ];
 ---
 <Base title="Science" description="The scientific rationale and goals of the Interra Project.">
@@ -69,12 +77,40 @@ const goals = [
 
   <section class="section">
     <div class="container">
-      <h2>Scientific goals</h2>
-      <ul class="goals">
-        {goals.map((g) => (
-          <li><span class="goal-mark mono">&rsaquo;</span>{g}</li>
+      <p class="eyebrow">The deliverable</p>
+      <h2>Comprehensive ensembles, improving every generation.</h2>
+      <p class="produce">
+        Interra’s central output is large <strong>ensembles</strong> of modelled planetary
+        evolution paths: sets of simulated planets that span a relevant range of physical
+        and chemical conditions, such as mass, composition, and instellation (the stellar
+        energy a planet receives). Each generation improves on the last in <strong>depth</strong>
+        (how physically and chemically complete the models are) and <strong>breadth</strong>
+        (how much of parameter space they cover). The models are post-processed through
+        telescope simulators, the instrument pipelines of facilities like JWST, the ELTs,
+        PLATO, and Ariel, so they can be compared directly against real observations.
+        Where models and data systematically disagree, the mismatch points to the missing
+        physics and chemistry that the next generation must add.
+      </p>
+    </div>
+  </section>
+
+  <StrataBand variant="rule" />
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">What the ensembles enable</p>
+      <h2>Three strands of discovery.</h2>
+      <div class="strands">
+        {strands.map((s, i) => (
+          <article class="strand">
+            <span class="strand-k mono">{String(i + 1).padStart(2, '0')}</span>
+            <div class="strand-body">
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </div>
+          </article>
         ))}
-      </ul>
+      </div>
     </div>
   </section>
 </Base>
@@ -90,9 +126,16 @@ const goals = [
 
   .ink-lead { font-size: var(--t-h2); line-height: 1.5; color: var(--bone); max-width: 60ch; font-weight: 300; }
 
-  .goals { list-style: none; padding: 0; margin: 1.5rem 0 0; max-width: 70ch; }
-  .goals li { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--divider); font-size: var(--t-body-l); }
-  .goal-mark { color: var(--amber); font-weight: 700; }
+  .produce { font-size: var(--t-body-l); max-width: 68ch; color: var(--graphite); }
+  .produce strong { color: var(--ink); font-weight: 600; }
+
+  .strands { margin-top: 1.5rem; }
+  .strand { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.75rem 0; border-top: 1px solid var(--divider); }
+  .strand:first-child { border-top: 2px solid var(--amber); }
+  .strand-k { color: var(--amber); font-size: 1.5rem; font-weight: 700; line-height: 1; flex: 0 0 auto; }
+  .strand-body { max-width: 70ch; }
+  .strand-body h3 { margin: 0 0 0.5rem; color: var(--ink); }
+  .strand-body p { font-size: var(--t-body-l); color: var(--graphite); margin: 0; }
 
   @media (max-width: 760px) { .grid-2 { grid-template-columns: 1fr; } }
 </style>
