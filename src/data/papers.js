@@ -43,4 +43,34 @@ export const papers = [
     lay:
       'Instead of reading a planet’s atmosphere from its light in isolation, we use Interra to ask which evolutionary histories could actually have produced what we see, and we share fast tools so others can do the same in their own analyses.',
   },
+  {
+    n: 'V',
+    title: 'Interior structure and mass-radius relations across the Interra ensembles',
+    authors: 'Interra Collaboration',
+    status: 'In preparation',
+    abstract:
+      'We derive the interior structure and mass-radius relations for the Interra ensembles, propagating composition, thermal state, and phase transitions from core to surface with a thermodynamically consistent treatment. We quantify how the molten-to-solid transition shifts the inferred radius and the resulting degeneracies for observed planets. Provisional abstract for the 2027 release.',
+    lay:
+      'Two planets of identical size and mass can be very different inside, one solid, one partly molten. We compute how a planet’s interior sets its measured size, and show how this changes what we can conclude about real, observed worlds.',
+  },
+  {
+    n: 'VI',
+    title: 'Atmospheric chemistry and redox-dependent spectra of evolving rocky planets',
+    authors: 'Interra Collaboration',
+    status: 'In preparation',
+    abstract:
+      'We model the atmospheric chemistry of evolving rocky planets as a function of mantle oxygen fugacity and compute the resulting transmission and emission spectra across the Interra ensembles. We identify the spectral features that trace redox state and assess their detectability with current and planned facilities. Provisional abstract for the 2027 release.',
+    lay:
+      'How oxidised a planet’s rocky interior is leaves a fingerprint in its atmosphere, and therefore in its light. We model this across many planets, identify which features in a spectrum reveal a planet’s chemistry, and ask whether telescopes could see them.',
+  },
+  {
+    n: 'VII',
+    title: 'Atmospheric escape and the long-term retention of volatiles',
+    authors: 'Interra Collaboration',
+    status: 'In preparation',
+    abstract:
+      'Using the Interra ensembles, we follow atmospheric escape driven by stellar irradiation over time and quantify which planets retain their volatiles and which are stripped. We connect escape histories to the present-day atmospheres that observations would reveal. Provisional abstract for the 2027 release.',
+    lay:
+      'Young stars can blow away a planet’s atmosphere. We track this loss over billions of years to find which planets keep their air and water and which lose them, and how that shapes what we would observe today.',
+  },
 ];
