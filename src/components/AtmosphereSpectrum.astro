@@ -1,38 +1,34 @@
 ---
 /*
-  Ensemble of synthetic spectra spanning a mantle redox sequence (reduced -> oxidised),
-  coloured along the Interra strata colormap as the redox axis. As the atmosphere
-  oxidises, CH4 and CO fade while CO2, SO2, and H2O grow (cf. Nicholls et al. 2025,
-  MNRAS, arXiv:2412.11987). One central best-fit model sits thick and opaque; the rest
-  fade into the background. The spread is the retrieval uncertainty. Synthetic and
-  illustrative; pure inline SVG.
+  Redox veil: a layered, translucent ensemble of synthetic spectra spanning a mantle
+  redox sequence (reduced -> oxidised), coloured along the Interra strata colormap.
+  Stylised brand visual, not a chart: no axes, no labels. The colour gradient is the
+  redox axis; the spread is the retrieval uncertainty. The central best-fit model
+  glows through in amber. Edges fade into the ink. Pure inline SVG.
 */
-const W = 1000, H = 268;
-const padL = 58, padR = 26, padT = 38, padB = 56;
+const W = 1000, H = 190;
+const padL = 6, padR = 6, padT = 26, padB = 18;
 const x0 = padL, x1 = W - padR;
 const yTop = padT, yBot = H - padB;
-
 const lamMin = 0.6, lamMax = 5.2;
 
 // Redox-dependent feature set: t = 0 reduced -> t = 1 oxidised.
 function featuresAt(t) {
   const red = 1 - t;
   return [
-    { mu: 0.95, sigma: 0.11, amp: 16 * red },                 // H2 / CO (reduced)
-    { mu: 1.40, sigma: 0.12, amp: 20 + 36 * t },              // H2O
-    { mu: 1.65, sigma: 0.10, amp: 30 * red },                 // CH4 (reduced)
-    { mu: 1.90, sigma: 0.14, amp: 18 + 28 * t },              // H2O
-    { mu: 2.35, sigma: 0.13, amp: 34 * red },                 // CH4 (reduced)
-    { mu: 2.70, sigma: 0.18, amp: 22 + 40 * t },              // H2O
-    { mu: 3.30, sigma: 0.16, amp: 12 + 62 * red },            // CH4 (strong reduced marker)
-    { mu: 4.05, sigma: 0.12, amp: 72 * Math.pow(t, 1.4) },    // SO2 (oxidised marker)
-    { mu: 4.30, sigma: 0.17, amp: 22 + 86 * t },              // CO2 (strong oxidised marker)
-    { mu: 4.65, sigma: 0.10, amp: 16 + 40 * red },            // CO (reduced / intermediate)
+    { mu: 0.95, sigma: 0.11, amp: 16 * red },
+    { mu: 1.40, sigma: 0.12, amp: 20 + 36 * t },
+    { mu: 1.65, sigma: 0.10, amp: 30 * red },
+    { mu: 1.90, sigma: 0.14, amp: 18 + 28 * t },
+    { mu: 2.35, sigma: 0.13, amp: 34 * red },
+    { mu: 2.70, sigma: 0.18, amp: 22 + 40 * t },
+    { mu: 3.30, sigma: 0.16, amp: 12 + 62 * red },
+    { mu: 4.05, sigma: 0.12, amp: 72 * Math.pow(t, 1.4) },
+    { mu: 4.30, sigma: 0.17, amp: 22 + 86 * t },
+    { mu: 4.65, sigma: 0.10, amp: 16 + 40 * red },
   ];
 }
-
 function hash(n) { const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
-
 function specVal(lam, t) {
   let v = 72 + 4 * (lam - lamMin) + 26 * Math.exp(-(lam - lamMin) / 0.5);
   for (const f of featuresAt(t)) v += f.amp * Math.exp(-((lam - f.mu) ** 2) / (2 * f.sigma ** 2));
@@ -46,12 +42,11 @@ function envStrength(lam, t) {
 function specFine(lam, i, t, seed) {
   const es = envStrength(lam, t);
   const ph = seed * 1.7;
-  const s = Math.sin(lam * 55 + ph) * 2.4 + Math.sin(lam * 101 + 0.9 + ph) * 1.8
-          + Math.sin(lam * 181 + 2.3 + ph) * 1.3 + Math.sin(lam * 293 + 1.1 + ph) * 0.9;
+  const s = Math.sin(lam * 55 + ph) * 2.0 + Math.sin(lam * 101 + 0.9 + ph) * 1.5
+          + Math.sin(lam * 181 + 2.3 + ph) * 1.1 + Math.sin(lam * 293 + 1.1 + ph) * 0.8;
   const jitter = (hash(i + seed * 733) - 0.5) * 2;
-  return s * (0.45 + 1.1 * es) + jitter * (1.2 + 4.2 * es);
+  return s * (0.4 + 1.0 * es) + jitter * (0.9 + 3.2 * es);
 }
-
 const N = 520;
 function sampleSpectrum(t, seed) {
   const arr = [];
@@ -73,124 +68,58 @@ function redoxColor(t) {
   return rgb2hex([a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f]);
 }
 
-// Ensemble across the redox axis, plus a central best-fit model.
-const nSpec = 9;
-const tCentral = 0.5;
+const nSpec = 20;
 const ensemble = [];
 for (let k = 0; k < nSpec; k++) {
   const t = k / (nSpec - 1);
   ensemble.push({ t, samples: sampleSpectrum(t, k + 1), color: redoxColor(t) });
 }
-const central = sampleSpectrum(tCentral, 99);
-const centralModel = (lam) => specVal(lam, tCentral);
+const central = sampleSpectrum(0.5, 99);
 
 const allV = central.map(r => r.v).concat(...ensemble.map(e => e.samples.map(r => r.v)));
 const vmin = Math.min(...allV), vmax = Math.max(...allV);
 const Rng = vmax - vmin;
-const lo = vmin - 0.08 * Rng, hi = vmax + 0.12 * Rng;
-
+const lo = vmin - 0.06 * Rng, hi = vmax + 0.10 * Rng;
 const sx = (lam) => x0 + (x1 - x0) * (lam - lamMin) / (lamMax - lamMin);
 const sy = (v) => yBot - (yBot - yTop) * (v - lo) / (hi - lo);
-
 const toPath = (arr) => 'M ' + arr.map(r => `${sx(r.lam).toFixed(1)} ${sy(r.v).toFixed(1)}`).join(' L ');
+
 const ensemblePaths = ensemble.map(e => ({ d: toPath(e.samples), color: e.color }));
 const centralPath = toPath(central);
 const centralArea = `${centralPath} L ${x1} ${yBot} L ${x0} ${yBot} Z`;
-
-// Binned data points on the central model, with error bars.
-const nData = 18;
-const data = [];
-for (let i = 0; i < nData; i++) {
-  const lam = lamMin + (lamMax - lamMin) * ((i + 0.5) / nData);
-  const v = centralModel(lam) + Math.sin(i * 2.3) * 6 + Math.cos(i * 1.1) * 4;
-  const err = 9 + 4 * Math.abs(Math.sin(i * 1.7));
-  data.push({ cx: +sx(lam).toFixed(1), cy: +sy(v).toFixed(1), eTop: +sy(v + err).toFixed(1), eBot: +sy(v - err).toFixed(1) });
-}
-
-// Feature labels on the central model.
-const labels = [
-  { lam: 1.40, main: 'H', sub: '2', post: 'O' },
-  { lam: 3.30, main: 'CH', sub: '4', post: '' },
-  { lam: 4.05, main: 'SO', sub: '2', post: '' },
-  { lam: 4.30, main: 'CO', sub: '2', post: '' },
-  { lam: 4.65, main: 'CO', sub: '', post: '' },
-].map(l => ({ ...l, x: +sx(l.lam).toFixed(1), peakY: +sy(centralModel(l.lam)).toFixed(1) }));
-
-const ticks = [1, 2, 3, 4, 5].map(t => ({ x: +sx(t).toFixed(1), label: String(t) }));
-
-// Redox colorbar legend.
-const cbW = 132, cbX = +(W / 2 - cbW / 2).toFixed(1), cbY = 12;
 ---
 <svg
   class="atmo-spectrum"
   viewBox={`0 0 ${W} ${H}`}
+  preserveAspectRatio="none"
   role="img"
-  aria-label="Ensemble of synthetic spectra across a reduced-to-oxidised mantle redox sequence, showing retrieval uncertainty; one central model with fainter draws coloured by redox state"
+  aria-label="Stylised ensemble of synthetic spectra across a reduced-to-oxidised redox sequence, coloured along the Interra palette"
 >
   <defs>
     <linearGradient id="atmoFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--amber)" stop-opacity="0.2" />
+      <stop offset="0%" stop-color="var(--amber)" stop-opacity="0.16" />
       <stop offset="100%" stop-color="var(--amber)" stop-opacity="0" />
     </linearGradient>
-    <linearGradient id="redoxBar" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#F0BA5E" />
-      <stop offset="25%" stop-color="#DE7037" />
-      <stop offset="50%" stop-color="#A23E3C" />
-      <stop offset="75%" stop-color="#6A2A4D" />
-      <stop offset="100%" stop-color="#3E5B86" />
+    <linearGradient id="edgeFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#000" /><stop offset="7%" stop-color="#fff" />
+      <stop offset="93%" stop-color="#fff" /><stop offset="100%" stop-color="#000" />
     </linearGradient>
+    <mask id="fadeMask"><rect x="0" y="0" width={W} height={H} fill="url(#edgeFade)" /></mask>
+    <filter id="softGlow" x="-10%" y="-60%" width="120%" height="220%">
+      <feGaussianBlur stdDeviation="2.4" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
   </defs>
 
-  <!-- baseline axis -->
-  <line x1={x0} y1={yBot} x2={x1} y2={yBot} stroke="var(--mist)" stroke-opacity="0.3" stroke-width="1" />
-  {ticks.map(t => (
-    <g>
-      <line x1={t.x} y1={yBot} x2={t.x} y2={yBot + 5} stroke="var(--mist)" stroke-opacity="0.4" stroke-width="1" />
-      <text x={t.x} y={yBot + 19} text-anchor="middle" class="axis-num">{t.label}</text>
-    </g>
-  ))}
-  <text x={(x0 + x1) / 2} y={yBot + 39} text-anchor="middle" class="axis-unit">wavelength / µm</text>
-  <text x={x0 - 44} y={(yTop + yBot) / 2} transform={`rotate(-90 ${x0 - 44} ${(yTop + yBot) / 2})`} text-anchor="middle" class="axis-unit">transit depth</text>
-
-  <!-- ensemble across the redox axis, faded behind the central model -->
-  {ensemblePaths.map(p => (
-    <path d={p.d} fill="none" stroke={p.color} stroke-opacity="0.32" stroke-width="1.1" stroke-linejoin="round" />
-  ))}
-
-  <!-- central best-fit model -->
-  <path d={centralArea} fill="url(#atmoFill)" />
-  <path d={centralPath} fill="none" stroke="var(--amber)" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round" />
-
-  <!-- binned data points with error bars -->
-  {data.map(d => (
-    <g>
-      <line x1={d.cx} y1={d.eTop} x2={d.cx} y2={d.eBot} stroke="var(--mist)" stroke-opacity="0.55" stroke-width="1.2" />
-      <circle cx={d.cx} cy={d.cy} r="2.8" fill="var(--cream)" />
-    </g>
-  ))}
-
-  <!-- feature labels on the central model -->
-  {labels.map(l => (
-    <g>
-      <circle cx={l.x} cy={l.peakY} r="2.2" fill="var(--amber)" />
-      <text x={l.x} y={Math.max(l.peakY - 12, yTop + 9)} text-anchor="middle" class="feat">
-        {l.main}{l.sub && <tspan dy="0.2em" font-size="0.72em">{l.sub}</tspan>}{l.post && <tspan dy="-0.14em">{l.post}</tspan>}
-      </text>
-    </g>
-  ))}
-
-  <!-- redox colorbar legend -->
-  <g class="redoxbar">
-    <rect x={cbX} y={cbY} width={cbW} height="7" rx="1.5" fill="url(#redoxBar)" />
-    <text x={cbX - 8} y={cbY + 7} text-anchor="end" class="redox-cap">reduced</text>
-    <text x={cbX + cbW + 8} y={cbY + 7} text-anchor="start" class="redox-cap">oxidised</text>
+  <g mask="url(#fadeMask)">
+    {ensemblePaths.map(p => (
+      <path d={p.d} fill="none" stroke={p.color} stroke-opacity="0.28" stroke-width="1.1" stroke-linejoin="round" />
+    ))}
+    <path d={centralArea} fill="url(#atmoFill)" />
+    <path d={centralPath} fill="none" stroke="var(--amber)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" filter="url(#softGlow)" />
   </g>
 </svg>
 
 <style>
-  .atmo-spectrum { width: 100%; height: auto; display: block; overflow: visible; }
-  .axis-num { font-family: var(--font-mono); font-size: 13px; fill: var(--fog); }
-  .axis-unit { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; fill: var(--fog); }
-  .feat { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.02em; fill: var(--fog); }
-  .redox-cap { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; fill: var(--bone); }
+  .atmo-spectrum { width: 100%; height: 150px; display: block; overflow: visible; }
+  @media (max-width: 700px) { .atmo-spectrum { height: 110px; } }
 </style>
