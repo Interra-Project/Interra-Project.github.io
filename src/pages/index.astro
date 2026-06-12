@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import StrataBand from '../components/StrataBand.astro';
-import SpectralReadout from '../components/SpectralReadout.astro';
+import AtmosphereSpectrum from '../components/AtmosphereSpectrum.astro';
 
 const pillars = [
   {
@@ -44,8 +44,8 @@ const pillars = [
       </div>
     </div>
     <div class="container hero-readout">
-      <SpectralReadout bars={64} />
-      <p class="readout-cap mono">Ensemble identifier &middot; generations of planetary trajectories</p>
+      <AtmosphereSpectrum />
+      <p class="readout-cap mono">Synthetic transmission spectrum &middot; modelled exoplanet atmosphere</p>
     </div>
   </section>
 

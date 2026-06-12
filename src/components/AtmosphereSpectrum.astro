@@ -1,0 +1,126 @@
+---
+/*
+  Stylised transmission spectrum of a modelled exoplanet atmosphere.
+  Transit depth vs wavelength, with absorption features at real molecular band
+  centres (H2O, CH4, CO2, CO). The data is SYNTHETIC and illustrative, not a real
+  observation. Rendered as crisp inline SVG in the Interra palette; no JS, no raster.
+*/
+const W = 1000, H = 268;
+const padL = 58, padR = 26, padT = 30, padB = 56;
+const x0 = padL, x1 = W - padR;       // plot x extent
+const yTop = padT, yBot = H - padB;   // plot y extent (yBot = baseline axis)
+
+const lamMin = 0.6, lamMax = 5.2;     // wavelength range, micron
+
+// Absorption features as Gaussians: band centre (micron), width, amplitude.
+const features = [
+  { mu: 1.15, sigma: 0.10, amp: 26 },
+  { mu: 1.40, sigma: 0.12, amp: 52 },
+  { mu: 1.90, sigma: 0.14, amp: 46 },
+  { mu: 2.70, sigma: 0.18, amp: 64 },
+  { mu: 3.30, sigma: 0.16, amp: 54 },
+  { mu: 4.30, sigma: 0.17, amp: 96 },
+  { mu: 4.65, sigma: 0.10, amp: 40 },
+];
+
+function model(lam) {
+  let v = 70 + 4 * (lam - lamMin);                 // gently sloped continuum
+  v += 30 * Math.exp(-(lam - lamMin) / 0.5);       // short-wavelength (haze) rise
+  for (const f of features) v += f.amp * Math.exp(-((lam - f.mu) ** 2) / (2 * f.sigma ** 2));
+  return v;
+}
+
+// Dense sampling for a smooth curve.
+const N = 260;
+const raw = [];
+for (let i = 0; i < N; i++) {
+  const lam = lamMin + (lamMax - lamMin) * (i / (N - 1));
+  raw.push({ lam, v: model(lam) });
+}
+const vmin = Math.min(...raw.map(r => r.v));
+const vmax = Math.max(...raw.map(r => r.v));
+const R = vmax - vmin;
+const lo = vmin - 0.16 * R, hi = vmax + 0.22 * R;
+
+const sx = (lam) => x0 + (x1 - x0) * (lam - lamMin) / (lamMax - lamMin);
+const sy = (v) => yBot - (yBot - yTop) * (v - lo) / (hi - lo);
+
+const pts = raw.map(r => [+sx(r.lam).toFixed(1), +sy(r.v).toFixed(1)]);
+const modelPath = 'M ' + pts.map(p => `${p[0]} ${p[1]}`).join(' L ');
+const areaPath = `${modelPath} L ${x1} ${yBot} L ${x0} ${yBot} Z`;
+
+// Binned data points with deterministic scatter + error bars.
+const nData = 18;
+const data = [];
+for (let i = 0; i < nData; i++) {
+  const lam = lamMin + (lamMax - lamMin) * ((i + 0.5) / nData);
+  const v = model(lam) + Math.sin(i * 2.3) * 6 + Math.cos(i * 1.1) * 4;
+  const err = 9 + 4 * Math.abs(Math.sin(i * 1.7));
+  data.push({ cx: +sx(lam).toFixed(1), cy: +sy(v).toFixed(1), eTop: +sy(v + err).toFixed(1), eBot: +sy(v - err).toFixed(1) });
+}
+
+// Molecular feature labels (subscripts rendered with tspans, font-agnostic).
+const labels = [
+  { lam: 1.40, main: 'H', sub: '2', post: 'O', emph: false },
+  { lam: 2.70, main: 'H', sub: '2', post: 'O', emph: false },
+  { lam: 3.30, main: 'CH', sub: '4', post: '', emph: false },
+  { lam: 4.30, main: 'CO', sub: '2', post: '', emph: true },
+  { lam: 4.65, main: 'CO', sub: '', post: '', emph: false },
+].map(l => ({ ...l, x: +sx(l.lam).toFixed(1), peakY: +sy(model(l.lam)).toFixed(1) }));
+
+const ticks = [1, 2, 3, 4, 5].map(t => ({ x: +sx(t).toFixed(1), label: String(t) }));
+---
+<svg
+  class="atmo-spectrum"
+  viewBox={`0 0 ${W} ${H}`}
+  role="img"
+  aria-label="Illustrative transmission spectrum of a modelled exoplanet atmosphere, showing water, methane, carbon dioxide, and carbon monoxide absorption features"
+>
+  <defs>
+    <linearGradient id="atmoFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--amber)" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="var(--amber)" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- baseline axis -->
+  <line x1={x0} y1={yBot} x2={x1} y2={yBot} stroke="var(--mist)" stroke-opacity="0.3" stroke-width="1" />
+  {ticks.map(t => (
+    <g>
+      <line x1={t.x} y1={yBot} x2={t.x} y2={yBot + 5} stroke="var(--mist)" stroke-opacity="0.4" stroke-width="1" />
+      <text x={t.x} y={yBot + 19} text-anchor="middle" class="axis-num">{t.label}</text>
+    </g>
+  ))}
+  <text x={(x0 + x1) / 2} y={yBot + 39} text-anchor="middle" class="axis-unit">wavelength / µm</text>
+  <text x={x0 - 44} y={(yTop + yBot) / 2} transform={`rotate(-90 ${x0 - 44} ${(yTop + yBot) / 2})`} text-anchor="middle" class="axis-unit">transit depth</text>
+
+  <!-- model fill + curve -->
+  <path d={areaPath} fill="url(#atmoFill)" />
+  <path d={modelPath} fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+
+  <!-- binned data points with error bars -->
+  {data.map(d => (
+    <g>
+      <line x1={d.cx} y1={d.eTop} x2={d.cx} y2={d.eBot} stroke="var(--mist)" stroke-opacity="0.55" stroke-width="1.2" />
+      <circle cx={d.cx} cy={d.cy} r="2.8" fill="var(--cream)" />
+    </g>
+  ))}
+
+  <!-- molecular feature labels -->
+  {labels.map(l => (
+    <g>
+      <circle cx={l.x} cy={l.peakY} r="2.4" fill={l.emph ? 'var(--strata-gold)' : 'var(--amber)'} />
+      <text x={l.x} y={Math.max(l.peakY - 12, yTop + 9)} text-anchor="middle" class={l.emph ? 'feat feat-emph' : 'feat'}>
+        {l.main}{l.sub && <tspan dy="0.2em" font-size="0.72em">{l.sub}</tspan>}{l.post && <tspan dy="-0.14em">{l.post}</tspan>}
+      </text>
+    </g>
+  ))}
+</svg>
+
+<style>
+  .atmo-spectrum { width: 100%; height: auto; display: block; overflow: visible; }
+  .axis-num { font-family: var(--font-mono); font-size: 13px; fill: var(--fog); }
+  .axis-unit { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; fill: var(--fog); }
+  .feat { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.02em; fill: var(--fog); }
+  .feat-emph { fill: var(--strata-gold); }
+</style>
