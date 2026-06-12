@@ -6,6 +6,8 @@ import { papers } from '../data/papers.js';
 
 // Exclude 'ink' so the accent stays visible on the dark figure panel and light cards.
 const strata = ['gold', 'amber', 'magma', 'plum', 'cobalt'];
+// Numerals derived from position, so reordering never needs renumbering.
+const roman = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 ---
 <Base title="Papers" description="The first papers of the Interra 2027 Release.">
   <section class="section page-head">
@@ -31,7 +33,7 @@ const strata = ['gold', 'amber', 'magma', 'plum', 'cobalt'];
             <PaperFigure seed={i} />
             <div class="paper-content">
               <div class="paper-head">
-                <span class="paper-n mono">{p.n}</span>
+                <span class="paper-n mono">{roman[i]}</span>
                 <div>
                   <p class="paper-eyebrow mono">Interra 2027 Release &middot; {p.status}</p>
                   <h2 class="paper-title">{p.title}</h2>
