@@ -13,6 +13,8 @@ Public website for the [Interra Project](https://interra-project.org), built wit
 
 ## Develop
 
+Requires Node 22.23.4 or newer.
+
 ```bash
 npm install
 npm run dev      # local dev server

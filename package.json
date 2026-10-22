@@ -12,7 +12,10 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.3.0",
-    "astro": "^5.6.1"
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.2"
+  },
+  "engines": {
+    "node": ">=22.23.4"
   }
 }
